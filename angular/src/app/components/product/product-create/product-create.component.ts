@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 import { Product } from '../product.model';
 import { Provider } from '../../provider/provider.model';
 import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 
 @Component({
@@ -14,7 +14,9 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class ProductCreateComponent implements OnInit {
   product:Product = {
-    nome: undefined
+    nome: undefined,
+    preco: undefined,
+    quantidade: undefined
   }
 
   providers:Provider[] = [
@@ -24,9 +26,9 @@ export class ProductCreateComponent implements OnInit {
   ]
 
   myControl = new FormControl();
-  //options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<Provider[]>;
   selectedProvider: string;
+  produtoForm: FormGroup;
 
   constructor(private productService: ProductService,
     private router: Router) { }
@@ -36,6 +38,19 @@ export class ProductCreateComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+    this.produtoForm = new FormGroup({
+      nome: new FormControl(this.product.nome, [
+        Validators.required
+      ]),
+      preco: new FormControl(this.product.preco, [
+        Validators.pattern('\d+(,\d{1,2})?'),
+        Validators.required
+      ]),
+      quantidade: new FormControl(this.product.quantidade, [
+        Validators.pattern("^[0-9]*$"),
+        Validators.required
+      ])
+    })
   }
 
   private _filter(value: string): Provider[] {
@@ -45,11 +60,14 @@ export class ProductCreateComponent implements OnInit {
   }
 
   createProduct(): void {
+    if(!this.produtoForm.valid) {
+      this.produtoForm.markAllAsTouched();
+      return;
+    } 
     this.productService.create(this.product).subscribe(() => {
       this.productService.showMenssage('Produto cadastrado com sucesso!');
       this.router.navigate(['/products']);
     })
-    
   }
 
   cancel(): void {

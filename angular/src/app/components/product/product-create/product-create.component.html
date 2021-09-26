@@ -1,15 +1,20 @@
 <mat-card>
     <mat-card-title>Novo Produto</mat-card-title>
-    <form>
+    <form [formGroup]="produtoForm">
         <mat-form-field>
-            <input matInput placeholder="Nome do Produto" [(ngModel)]="product.nome" name="Nome">
+            <input matInput formControlName="nome" placeholder="Nome do Produto" [(ngModel)]="product.nome" name="Nome">
+            <mat-hint class="invalid" *ngIf="produtoForm.get('nome').touched && produtoForm.get('nome').errors?.required"> Insira o nome do Produto</mat-hint>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Preço (R$)">
+            <input matInput formControlName="preco" placeholder="Preço (R$)">
+            <mat-hint class="invalid" *ngIf="produtoForm.get('preco').touched && produtoForm.get('preco').errors?.required"> Insira o preço do Produto</mat-hint>
+            <mat-hint class="invalid" *ngIf="produtoForm.get('preco').touched && produtoForm.get('preco').errors?.pattern"> Insira um valor valido Ex. 50,00</mat-hint>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Quantidade Disponivel">
-        </mat-form-field>
+            <input matInput formControlName="quantidade" numeric placeholder="Quantidade Disponivel">
+            <mat-hint class="invalid" *ngIf="produtoForm.get('quantidade').touched && produtoForm.get('quantidade').errors?.pattern"> Somente Números</mat-hint>
+            <mat-hint class="invalid" *ngIf="produtoForm.get('quantidade').touched && produtoForm.get('quantidade').errors?.required"> Insira a quantidade do Produto</mat-hint>
+        <!--</mat-form-field>
         <mat-form-field>
             <textarea matInput placeholder="Descrição do Produto"></textarea>
         </mat-form-field>
@@ -27,7 +32,7 @@
                       {{provider.nome}}
                     </mat-option>
                   </mat-autocomplete>
-              </mat-select> <!--
+              </mat-select> ////
             <input type="text"
                placeholder="Pick one"
                aria-label="Number"
