@@ -13,9 +13,36 @@
         <mat-form-field>
             <textarea matInput placeholder="Descrição do Produto"></textarea>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fornecedor</mat-label>
+            <mat-select matNativeControl [(ngModel)]="selectedProvider" name="nome">
+               <input type="text"
+               placeholder="Search..."
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto"
+               class="select-input">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let provider of filteredOptions | async" [value]="provider.nome">
+                      {{provider.nome}}
+                    </mat-option>
+                  </mat-autocomplete>
+              </mat-select> <!--
+            <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let provider of filteredOptions | async" [value]="provider.nome">
+            {{provider.nome}}
+          </mat-option>
+        </mat-autocomplete> -->
+          </mat-form-field>
     </form>
 </mat-card>
-
+<!--
 <mat-card>
     <mat-card-title>Dados Pessoais</mat-card-title>
     <form>
@@ -29,7 +56,7 @@
             <input matInput placeholder="Nome da Loja">
         </mat-form-field>
     </form>
-</mat-card>
+</mat-card> -->
 
 <button mat-raised-button (click)="createProduct()" color="primary">
     Salvar

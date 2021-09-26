@@ -24,8 +24,10 @@ import { ProductCrudComponent } from './views/product-crud/product-crud.componen
 import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 
 import { HttpClientModule } from '@angular/common/http'
-
-import { FormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductReadComponent } from './components/product/product-read/product-read.component'
 
 @NgModule({
@@ -54,7 +56,11 @@ import { ProductReadComponent } from './components/product/product-read/product-
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

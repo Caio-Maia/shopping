@@ -3,6 +3,9 @@
     justify-content: flex-start;
     align-items: center;
     position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 10; /* Ensure that your app's content doesn't overlap the toolbar */
 }
 
 .logo {
@@ -22,4 +25,11 @@
 
 .header .title-group i {
     padding-right: 5px;
+}
+
+.app-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
