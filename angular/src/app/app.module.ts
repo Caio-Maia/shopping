@@ -26,7 +26,6 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { HttpClientModule } from '@angular/common/http'
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductReadComponent } from './components/product/product-read/product-read.component'
 
@@ -59,8 +58,7 @@ import { ProductReadComponent } from './components/product/product-read/product-
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
-    MatAutocompleteModule,
-    NgSelectModule
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
