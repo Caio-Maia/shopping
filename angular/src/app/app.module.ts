@@ -29,6 +29,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductReadComponent } from './components/product/product-read/product-read.component'
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { ProductSellComponent } from './components/product/product-sell/product-sell.component';
+import { UsersCrudComponent } from './views/users-crud/users-crud.component';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +45,9 @@ import { ProductReadComponent } from './components/product/product-read/product-
     HomeComponent,
     ProductCrudComponent,
     ProductCreateComponent,
-    ProductReadComponent
+    ProductReadComponent,
+    ProductSellComponent,
+    UsersCrudComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +67,9 @@ import { ProductReadComponent } from './components/product/product-read/product-
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMatSelectSearchModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

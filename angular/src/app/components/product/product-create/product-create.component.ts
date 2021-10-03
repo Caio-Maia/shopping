@@ -16,13 +16,15 @@ export class ProductCreateComponent implements OnInit {
   product:Product = {
     nome: undefined,
     preco: undefined,
-    quantidade: undefined
+    quantidade: undefined,
+    descricao: undefined,
+    fornecedor: undefined
   }
 
   providers:Provider[] = [
-    {nome:"Vagabundo INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
-    {nome:"MACMAC INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
-    {nome:"DADA INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"}
+    {id: 1, nome:"Vagabundo INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
+    {id: 2, nome:"MACMAC INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
+    {id: 3, nome:"DADA INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"}
   ]
 
   myControl = new FormControl();
@@ -48,6 +50,10 @@ export class ProductCreateComponent implements OnInit {
       ]),
       quantidade: new FormControl(this.product.quantidade, [
         Validators.pattern("^[0-9]*$"),
+        Validators.required
+      ]),
+      descricao: new FormControl(this.product.descricao, []),
+      fornecedor: new FormControl(this.product.fornecedor, [
         Validators.required
       ])
     })
