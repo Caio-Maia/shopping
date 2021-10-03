@@ -6,32 +6,32 @@
             <mat-hint class="invalid" *ngIf="produtoForm.get('nome').touched && produtoForm.get('nome').errors?.required"> Insira o nome do Produto</mat-hint>
         </mat-form-field>
         <mat-form-field>
-            <input prefix="R$ " mask="9990" suffix=".00" matInput formControlName="preco" placeholder="Preço (R$)">
+            <input prefix="R$ " mask="9990" suffix=".00" matInput formControlName="preco" [(ngModel)]="product.preco" placeholder="Preço (R$)">
             <mat-hint class="invalid" *ngIf="produtoForm.get('preco').touched && produtoForm.get('preco').errors?.required"> Insira o preço do Produto</mat-hint>
             <mat-hint class="invalid" *ngIf="produtoForm.get('preco').touched && produtoForm.get('preco').errors?.pattern"> Insira um valor valido Ex. 50,00</mat-hint>
         </mat-form-field>
         <mat-form-field>
-            <input matInput mask="9990" formControlName="quantidade" numeric placeholder="Quantidade Disponivel">
+            <input matInput mask="9990" formControlName="quantidade" numeric [(ngModel)]="product.quantidade" placeholder="Quantidade Disponivel">
             <mat-hint class="invalid" *ngIf="produtoForm.get('quantidade').touched && produtoForm.get('quantidade').errors?.pattern"> Somente Números</mat-hint>
             <mat-hint class="invalid" *ngIf="produtoForm.get('quantidade').touched && produtoForm.get('quantidade').errors?.required"> Insira a quantidade do Produto</mat-hint>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Fornecedor</mat-label>
-            <mat-select formControlName="fornecedor">
+            <mat-select formControlName="fornecedor" [(ngModel)]="product.fornecedor">
                 <mat-option>
                     <ngx-mat-select-search 
                     placeholderLabel="Busque..." 
                     noEntriesFoundLabel="Não foi possível encontrar nenhum resultado."
                     [formControl]="myControl"></ngx-mat-select-search>
                 </mat-option>
-                <mat-option *ngFor="let provider of filteredOptions | async" [value]="provider.cnpj">
+                <mat-option *ngFor="let provider of filteredOptions | async" [value]="provider.id">
                     {{provider.nome}}
                 </mat-option>
             </mat-select>
             <mat-hint class="invalid" *ngIf="produtoForm.get('fornecedor').touched && produtoForm.get('fornecedor').errors?.required"> Selecione o Fornecedor do Produto</mat-hint>
         </mat-form-field>
         <mat-form-field>
-            <textarea matInput formControlName="descricao" placeholder="Descrição do Produto"></textarea>
+            <textarea matInput formControlName="descricao" [(ngModel)]="product.descricao" placeholder="Descrição do Produto"></textarea>
         </mat-form-field>
     </form>
 </mat-card>

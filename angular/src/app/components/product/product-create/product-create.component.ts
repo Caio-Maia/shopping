@@ -45,7 +45,7 @@ export class ProductCreateComponent implements OnInit {
         Validators.required
       ]),
       preco: new FormControl(this.product.preco, [
-        Validators.pattern('\d+(,\d{1,2})?'),
+        //Validators.pattern('\d+(,\d{1,2})?'),
         Validators.required
       ]),
       quantidade: new FormControl(this.product.quantidade, [
@@ -73,6 +73,8 @@ export class ProductCreateComponent implements OnInit {
     this.productService.create(this.product).subscribe(() => {
       this.productService.showMenssage('Produto cadastrado com sucesso!');
       this.router.navigate(['/products']);
+    }, (error)=> {
+      this.productService.showMenssage('Não Foi Possivel Cadastrar o produto.');
     })
   }
 
