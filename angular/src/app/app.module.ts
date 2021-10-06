@@ -31,8 +31,10 @@ import { ProductReadComponent } from './components/product/product-read/product-
 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { ProductSellComponent } from './components/product/product-sell/product-sell.component';
 import { UsersCrudComponent } from './views/users-crud/users-crud.component';
+import { SaleCreateComponent } from './components/sale/sale-create/sale-create.component';
+import { SaleReadComponent } from './components/sale/sale-read/sale-read.component';
+import { SaleCrudComponent } from './views/sale-crud/sale-crud.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -46,8 +48,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ProductCrudComponent,
     ProductCreateComponent,
     ProductReadComponent,
-    ProductSellComponent,
-    UsersCrudComponent
+    UsersCrudComponent,
+    SaleCreateComponent,
+    SaleReadComponent,
+    SaleCrudComponent
   ],
   imports: [
     BrowserModule,
