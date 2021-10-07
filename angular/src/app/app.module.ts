@@ -23,7 +23,7 @@ import { HomeComponent } from './views/home/home.component';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +35,9 @@ import { UsersCrudComponent } from './views/users-crud/users-crud.component';
 import { SaleCreateComponent } from './components/sale/sale-create/sale-create.component';
 import { SaleReadComponent } from './components/sale/sale-read/sale-read.component';
 import { SaleCrudComponent } from './views/sale-crud/sale-crud.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { InterceptorService } from './components/template/loader/interceptor.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -73,9 +76,13 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatSelectModule,
     MatAutocompleteModule,
     NgxMatSelectSearchModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

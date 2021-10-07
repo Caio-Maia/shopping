@@ -16,6 +16,8 @@ export class ProductReadComponent implements OnInit {
   ngOnInit(): void {
     this.productService.read().subscribe(products => {
       this.products = products;
+    }, (error)=> {
+      this.productService.showMenssage('Não Foi Possivel encontrar nenhum produto.');
     })
   }
 
