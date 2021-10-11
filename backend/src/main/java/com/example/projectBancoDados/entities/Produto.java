@@ -10,7 +10,6 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
     @Column(name = "nome")
@@ -19,16 +18,12 @@ public class Produto implements Serializable {
     @Column(name = "quantidade")
     private Integer quantidade;
 
-    @Column(name = "image", length = 1000)
-    private String image;
-
     public Produto(){}
 
-    public Produto(long id, String nome, Integer quantidade, String image) {
+    public Produto(long id, String nome, Integer quantidade) {
         super();
         this.id = id;
         this.nome = nome;
-        this.image = image;
         this.quantidade = quantidade;
     }
 
@@ -46,14 +41,6 @@ public class Produto implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Integer getQuantidade() {

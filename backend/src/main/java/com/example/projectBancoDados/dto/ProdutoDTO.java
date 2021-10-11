@@ -2,15 +2,18 @@ package com.example.projectBancoDados.dto;
 
 import com.example.projectBancoDados.entities.Produto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class ProdutoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @NotEmpty(message = "nome is required.")
     private String nome;
+    @NotNull(message = "quantidade is required.")
     private Integer quantidade;
-    private String image;
 
     public ProdutoDTO() {}
 
@@ -18,7 +21,6 @@ public class ProdutoDTO implements Serializable {
         id = entity.getId();
         nome = entity.getNome();
         quantidade = entity.getQuantidade();
-        image = entity.getImage();
     }
 
     public Long getId() {
@@ -35,14 +37,6 @@ public class ProdutoDTO implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Integer getQuantidade() {
