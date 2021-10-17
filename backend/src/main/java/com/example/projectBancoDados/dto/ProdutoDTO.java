@@ -10,9 +10,9 @@ public class ProdutoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @NotEmpty(message = "nome is required.")
+    @NotEmpty(message = "Nome is required.")
     private String nome;
-    @NotNull(message = "quantidade is required.")
+    @NotNull(message = "Quantidade is required.")
     private Integer quantidade;
 
     public ProdutoDTO() {}
@@ -27,23 +27,11 @@ public class ProdutoDTO implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public Integer getQuantidade() {
         return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
     }
 }

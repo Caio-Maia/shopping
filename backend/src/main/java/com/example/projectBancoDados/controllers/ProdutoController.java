@@ -31,8 +31,8 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<ProdutoDTO> insert(@Valid @RequestBody ProdutoDTO dto) throws Exception {
-        ProdutoDTO newDTO = service.insert(dto);
-        return ResponseEntity.ok().body(newDTO);
+        ProdutoDTO produto = service.insert(dto);
+        return ResponseEntity.ok().body(produto);
     }
 
     @DeleteMapping(value = "/{id}")
