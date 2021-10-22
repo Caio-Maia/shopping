@@ -1,6 +1,6 @@
 package com.example.projectBancoDados.controllers;
 
-import com.example.projectBancoDados.dto.FornecedorDTO;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorDTO;
 import com.example.projectBancoDados.services.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,8 @@ public class FornecedorController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.projectBancoDados.dto;
+package com.example.projectBancoDados.dto.fornecedor;
 
 import com.example.projectBancoDados.entities.Fornecedor;
 

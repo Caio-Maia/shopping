@@ -1,6 +1,6 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.FornecedorDTO;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorDTO;
 import com.example.projectBancoDados.entities.Fornecedor;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.FornecedorRepository;
