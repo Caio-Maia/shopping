@@ -2,6 +2,7 @@ package com.example.projectBancoDados.dto.fornecedor;
 
 import com.example.projectBancoDados.entities.Fornecedor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
@@ -9,11 +10,11 @@ public class FornecedorDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @NotEmpty(message = "Nome is required.")
+    @NotBlank(message = "Nome is required.")
     private String nome;
     @NotEmpty(message = "CNPJ is required")
     private Long cnpj;
-    @NotEmpty(message = "Endereço is required")
+    @NotBlank(message = "Endereço is required")
     private String endereco;
     @NotEmpty(message = "Telefone is required")
     private Long telefone;

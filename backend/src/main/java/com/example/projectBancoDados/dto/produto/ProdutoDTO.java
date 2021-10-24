@@ -2,7 +2,7 @@ package com.example.projectBancoDados.dto.produto;
 
 import com.example.projectBancoDados.entities.Produto;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -10,8 +10,10 @@ public class ProdutoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @NotEmpty(message = "Nome is required.")
+
+    @NotBlank(message = "Nome is required.")
     private String nome;
+
     @NotNull(message = "Quantidade is required.")
     private Integer quantidade;
 
