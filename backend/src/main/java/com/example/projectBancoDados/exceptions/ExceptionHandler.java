@@ -22,7 +22,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         Exception exception = new Exception();
         List<String> error = new ArrayList<>();
         exception.setStatus(status.value());
-        exception.setTime(LocalDateTime.now());
+        exception.setTimeStamp(LocalDateTime.now());
         ex.getFieldErrors().forEach(fieldError -> {
             error.add(fieldError.getDefaultMessage());
         });

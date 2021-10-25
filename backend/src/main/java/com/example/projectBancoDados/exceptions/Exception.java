@@ -6,7 +6,7 @@ import java.util.List;
 public class Exception {
 
     private Integer status;
-    private LocalDateTime time;
+    private LocalDateTime timestamp;
     private List<String> errors;
 
     public Integer getStatus() {
@@ -17,12 +17,12 @@ public class Exception {
         this.status = status;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getTimeStamp() {
+        return timestamp;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setTimeStamp(LocalDateTime time) {
+        this.timestamp = time;
     }
 
     public List<String> getErrors() {
