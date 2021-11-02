@@ -5,7 +5,6 @@ import com.example.projectBancoDados.dto.pedido.PedidoResponse;
 import com.example.projectBancoDados.entities.Fornecedor;
 import com.example.projectBancoDados.entities.Pedido;
 import com.example.projectBancoDados.entities.Produto;
-import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.FornecedorRepository;
 import com.example.projectBancoDados.repositories.PedidoRepository;
 import com.example.projectBancoDados.repositories.ProdutoRepository;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +54,7 @@ public class PedidoService {
             Produto produto = produtoRepository.getById(dto.getProdutoId());
             entity.setProduto(produto);
             entity.setQuantidade(dto.getQuantidade());
-            entity.setTempo(LocalDateTime.now());
+            entity.setDataPedido(LocalDateTime.now());
             entity = pedidoRepository.save(entity);
             produto.setQuantidade(produto.getQuantidade() + dto.getQuantidade());
             produtoRepository.save(produto);

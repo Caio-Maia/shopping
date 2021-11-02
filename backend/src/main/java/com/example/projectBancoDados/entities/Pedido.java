@@ -17,7 +17,7 @@ public class Pedido implements Serializable {
     private Integer quantidade;
 
     @Column(name = "tempo")
-    private LocalDateTime tempo;
+    private LocalDateTime dataPedido;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
@@ -34,7 +34,7 @@ public class Pedido implements Serializable {
         super();
         this.id = id;
         this.quantidade = quantidade;
-        this.tempo = tempo;
+        this.dataPedido = tempo;
         this.produto = produto;
         this.fornecedor = fornecedor;
     }
@@ -51,12 +51,12 @@ public class Pedido implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public LocalDateTime getTempo() {
-        return tempo;
+    public LocalDateTime getDataPedido() {
+        return dataPedido;
     }
 
-    public void setTempo(LocalDateTime tempo) {
-        this.tempo = tempo;
+    public void setDataPedido(LocalDateTime tempo) {
+        this.dataPedido = tempo;
     }
 
     public Produto getProduto() {

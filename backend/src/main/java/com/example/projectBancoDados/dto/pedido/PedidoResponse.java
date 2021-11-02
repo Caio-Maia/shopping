@@ -22,7 +22,7 @@ public class PedidoResponse implements Serializable {
     public PedidoResponse(Pedido entity) {
         id = entity.getId();
         quantidade = entity.getQuantidade();
-        tempo = entity.getTempo();
+        tempo = entity.getDataPedido();
         produto = new ProdutoDTO(entity.getProduto());
         fornecedor = new FornecedorDTO(entity.getFornecedor());
     }

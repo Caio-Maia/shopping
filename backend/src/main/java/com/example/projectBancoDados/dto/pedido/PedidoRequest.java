@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class PedidoRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Positive
+    @Positive(message = "Quantidade must be greater than 0")
     @NotNull(message = "Quantidade is required.")
     private Integer quantidade;
     @NotNull(message = "ProdutoId is required.")

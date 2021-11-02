@@ -29,7 +29,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaInfo() {
         return new ApiInfo(
-                "Meus Controlers",
+                "Shopping Controllers",
                 "Api da loja",
                 "1.0",
                 "Terms of Service",
