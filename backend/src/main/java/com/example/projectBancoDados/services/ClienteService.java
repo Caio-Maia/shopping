@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.cliente.ClienteDTO;
+import com.example.projectBancoDados.dto.cliente.ClienteRequest;
+import com.example.projectBancoDados.dto.cliente.ClienteResponse;
 import com.example.projectBancoDados.entities.Cliente;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.ClienteRepository;
@@ -25,21 +26,21 @@ public class ClienteService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ClienteDTO> findAll() {
+    public Page<ClienteResponse> findAll() {
         int page = 0;
         int size = 10;
         PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.ASC, "nome");
         List<Cliente> list = repository.findAll();
-        return new PageImpl<>(list.stream().map(x -> new ClienteDTO(x)).collect(Collectors.toList()), pageRequest, size);
+        return new PageImpl<>(list.stream().map(x -> new ClienteResponse(x)).collect(Collectors.toList()), pageRequest, size);
     }
 
-    public ClienteDTO findById(Long id) {
+    public ClienteResponse findById(Long id) {
         Cliente entity = repository.findById(id).orElseThrow(NotFoundException::new);
-        return new ClienteDTO(entity);
+        return new ClienteResponse(entity);
     }
 
     @Transactional
-    public ClienteDTO insert(ClienteDTO dto) {
+    public ClienteResponse insert(ClienteRequest dto) {
         Cliente entity = new Cliente();
         entity.setTipo(dto.getTipo());
         entity.setNome(dto.getNome());
@@ -47,7 +48,7 @@ public class ClienteService {
         entity.setEndereco(dto.getEndereco());
         entity.setTelefone(dto.getTelefone());
         entity = repository.save(entity);
-        return new ClienteDTO(entity);
+        return new ClienteResponse(entity);
     }
 
     @Transactional

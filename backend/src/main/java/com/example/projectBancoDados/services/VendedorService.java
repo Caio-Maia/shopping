@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.vendedor.VendedorDTO;
+import com.example.projectBancoDados.dto.vendedor.VendedorRequest;
+import com.example.projectBancoDados.dto.vendedor.VendedorResponse;
 import com.example.projectBancoDados.entities.Vendedor;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.VendedorRepository;
@@ -26,27 +27,27 @@ public class VendedorService {
     }
 
     @Transactional(readOnly = true)
-    public Page<VendedorDTO> findAll() {
+    public Page<VendedorResponse> findAll() {
         int page = 0;
         int size = 10;
         PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.ASC, "nome");
         List<Vendedor> list = repository.findAll();
-        return new PageImpl<>(list.stream().map(x -> new VendedorDTO(x)).collect(Collectors.toList()), pageRequest, size);
+        return new PageImpl<>(list.stream().map(x -> new VendedorResponse(x)).collect(Collectors.toList()), pageRequest, size);
     }
 
-    public VendedorDTO findById(Long id) {
+    public VendedorResponse findById(Long id) {
         Vendedor entity = repository.findById(id).orElseThrow(NotFoundException::new);
-        return new VendedorDTO(entity);
+        return new VendedorResponse(entity);
     }
 
     @Transactional
-    public VendedorDTO insert(VendedorDTO dto) {
+    public VendedorResponse insert(VendedorRequest dto) {
         Vendedor entity = new Vendedor();
         entity.setNome(dto.getNome());
         entity.setMatricula(dto.getMatricula());
         entity.setCargo(dto.getCargo());
         entity = repository.save(entity);
-        return new VendedorDTO(entity);
+        return new VendedorResponse(entity);
     }
 
     @Transactional

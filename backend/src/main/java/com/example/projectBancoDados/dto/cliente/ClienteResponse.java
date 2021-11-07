@@ -2,31 +2,20 @@ package com.example.projectBancoDados.dto.cliente;
 
 import com.example.projectBancoDados.entities.Cliente;
 import com.example.projectBancoDados.entities.enums.Tipo;
-import com.sun.istack.NotNull;
 
-import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
+public class ClienteResponse {
 
-public class ClienteDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    // Criar validação para TIPO
-    // Criar validação para padrão de cpf/cnpj e telefone
     private Long id;
     private Tipo tipo;
-    @NotBlank
     private String nome;
-    @NotNull
     private Long documento;
-    @NotBlank
     private String endereco;
-    @NotNull
     private Long telefone;
 
-    public ClienteDTO() {
+    public ClienteResponse() {
     }
 
-    public ClienteDTO(Cliente entity) {
+    public ClienteResponse(Cliente entity) {
         this.id = entity.getId();
         this.tipo = entity.getTipo();
         this.nome = entity.getNome();

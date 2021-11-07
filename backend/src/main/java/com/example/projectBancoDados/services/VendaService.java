@@ -57,13 +57,13 @@ public class VendaService {
             List<ProdutoVenda> entityProdutos = new ArrayList<>();
             dto.getProdutos().forEach(produto -> {
                 if(!produtoRepository.existsById(produto.getId())) throw new NotFoundException();
-                Produto newProduto = produtoRepository.getById(produto.getId());
-                int novaQuantidade = newProduto.getQuantidade() - produto.getQuantidade();
+                Produto produtoVendido = produtoRepository.getById(produto.getId());
+                int novaQuantidade = produtoVendido.getQuantidade() - produto.getQuantidade();
                 // Mudar o exception
                 if(novaQuantidade < 0) throw new NotFoundException();
-                entityProdutos.add(new ProdutoVenda(newProduto, produto.getQuantidade(), entity));
-                newProduto.setQuantidade(novaQuantidade);
-                produtoRepository.save(newProduto);
+                entityProdutos.add(new ProdutoVenda(produtoVendido, produto.getQuantidade(), entity));
+                produtoVendido.setQuantidade(novaQuantidade);
+                produtoRepository.save(produtoVendido);
             });
             entity.setProdutos(entityProdutos);
             Cliente cliente = clienteRepository.getById(dto.getClienteId());

@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.fornecedor.FornecedorDTO;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorRequest;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorResponse;
 import com.example.projectBancoDados.entities.Fornecedor;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.FornecedorRepository;
@@ -22,25 +23,25 @@ public class FornecedorService {
     }
 
     @Transactional(readOnly = true)
-    public List<FornecedorDTO> findAll() {
+    public List<FornecedorResponse> findAll() {
         List<Fornecedor> list = repository.findAll();
-        return list.stream().map(x -> new FornecedorDTO(x)).collect(Collectors.toList());
+        return list.stream().map(x -> new FornecedorResponse(x)).collect(Collectors.toList());
     }
 
-    public FornecedorDTO findById(Long id) {
+    public FornecedorResponse findById(Long id) {
         Fornecedor entity = repository.findById(id).orElseThrow(NotFoundException::new);
-        return new FornecedorDTO(entity);
+        return new FornecedorResponse(entity);
     }
 
     @Transactional
-    public FornecedorDTO insert(FornecedorDTO dto) {
+    public FornecedorResponse insert(FornecedorRequest dto) {
         Fornecedor entity = new Fornecedor();
         entity.setNome(dto.getNome());
         entity.setCnpj(dto.getCnpj());
         entity.setEndereco(dto.getEndereco());
         entity.setTelefone(dto.getTelefone());
         entity = repository.save(entity);
-        return new FornecedorDTO(entity);
+        return new FornecedorResponse(entity);
     }
 
     @Transactional

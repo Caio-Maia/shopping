@@ -1,22 +1,20 @@
 package com.example.projectBancoDados.dto.venda;
 
-import com.example.projectBancoDados.dto.cliente.ClienteDTO;
-import com.example.projectBancoDados.dto.produto.ProdutoDTO;
-import com.example.projectBancoDados.dto.vendedor.VendedorDTO;
+import com.example.projectBancoDados.dto.cliente.ClienteResponse;
+import com.example.projectBancoDados.dto.produto.ProdutoResponse;
+import com.example.projectBancoDados.dto.vendedor.VendedorResponse;
 import com.example.projectBancoDados.entities.Venda;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendaResponse implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class VendaResponse {
 
     private long id;
-    private ClienteDTO cliente;
-    private VendedorDTO vendedor;
-    private List<ProdutoDTO> produtos;
+    private ClienteResponse cliente;
+    private VendedorResponse vendedor;
+    private List<ProdutoResponse> produtos;
     private Integer valor;
     private LocalDateTime dataVenda;
 
@@ -25,10 +23,10 @@ public class VendaResponse implements Serializable {
 
     public VendaResponse(Venda entity) {
         id = entity.getId();
-        cliente = new ClienteDTO(entity.getCliente());
-        vendedor = new VendedorDTO(entity.getVendedor());
+        cliente = new ClienteResponse(entity.getCliente());
+        vendedor = new VendedorResponse(entity.getVendedor());
         produtos = new ArrayList<>();
-        entity.getProdutos().forEach(produto -> produtos.add(new ProdutoDTO(produto)));
+        entity.getProdutos().forEach(produto -> produtos.add(new ProdutoResponse(produto)));
         valor = entity.getValor();
         dataVenda = entity.getDataVenda();
     }
@@ -37,15 +35,15 @@ public class VendaResponse implements Serializable {
         return id;
     }
 
-    public ClienteDTO getCliente() {
+    public ClienteResponse getCliente() {
         return cliente;
     }
 
-    public VendedorDTO getVendedor() {
+    public VendedorResponse getVendedor() {
         return vendedor;
     }
 
-    public List<ProdutoDTO> getProdutos() {
+    public List<ProdutoResponse> getProdutos() {
         return produtos;
     }
 

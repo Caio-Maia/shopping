@@ -4,18 +4,16 @@ import com.example.projectBancoDados.entities.Operadora;
 
 import javax.validation.constraints.NotBlank;
 
-public class OperadoraDTO {
+public class OperadoraResponse {
 
     private long id;
-    @NotBlank
     private String nome;
-    @NotBlank
     private String bandeira;
 
-    public OperadoraDTO() {
+    public OperadoraResponse() {
     }
 
-    public OperadoraDTO(Operadora entity) {
+    public OperadoraResponse(Operadora entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.bandeira = entity.getBandeira();

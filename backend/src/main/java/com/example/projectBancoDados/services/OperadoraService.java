@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.operadora.OperadoraDTO;
+import com.example.projectBancoDados.dto.operadora.OperadoraRequest;
+import com.example.projectBancoDados.dto.operadora.OperadoraResponse;
 import com.example.projectBancoDados.entities.Operadora;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.OperadoraRepository;
@@ -25,26 +26,26 @@ public class OperadoraService {
     }
 
     @Transactional(readOnly = true)
-    public Page<OperadoraDTO> findAll() {
+    public Page<OperadoraResponse> findAll() {
         int page = 0;
         int size = 10;
         PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.ASC, "nome");
         List<Operadora> list = repository.findAll();
-        return new PageImpl<>(list.stream().map(x -> new OperadoraDTO(x)).collect(Collectors.toList()), pageRequest, size);
+        return new PageImpl<>(list.stream().map(x -> new OperadoraResponse(x)).collect(Collectors.toList()), pageRequest, size);
     }
 
-    public OperadoraDTO findById(Long id) {
+    public OperadoraResponse findById(Long id) {
         Operadora entity = repository.findById(id).orElseThrow(NotFoundException::new);
-        return new OperadoraDTO(entity);
+        return new OperadoraResponse(entity);
     }
 
     @Transactional
-    public OperadoraDTO insert(OperadoraDTO dto) {
+    public OperadoraResponse insert(OperadoraRequest dto) {
         Operadora entity = new Operadora();
         entity.setNome(dto.getNome());
         entity.setBandeira(dto.getBandeira());
         entity = repository.save(entity);
-        return new OperadoraDTO(entity);
+        return new OperadoraResponse(entity);
     }
 
     @Transactional

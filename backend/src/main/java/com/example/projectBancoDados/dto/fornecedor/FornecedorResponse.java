@@ -2,26 +2,17 @@ package com.example.projectBancoDados.dto.fornecedor;
 
 import com.example.projectBancoDados.entities.Fornecedor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
-
-public class FornecedorDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class FornecedorResponse {
 
     private Long id;
-    @NotBlank(message = "Nome is required.")
     private String nome;
-    @NotEmpty(message = "CNPJ is required")
     private Long cnpj;
-    @NotBlank(message = "Endereço is required")
     private String endereco;
-    @NotEmpty(message = "Telefone is required")
     private Long telefone;
 
-    public FornecedorDTO() {}
+    public FornecedorResponse() {}
 
-    public FornecedorDTO(Fornecedor entity) {
+    public FornecedorResponse(Fornecedor entity) {
         id = entity.getId();
         nome = entity.getNome();
         cnpj = entity.getCnpj();

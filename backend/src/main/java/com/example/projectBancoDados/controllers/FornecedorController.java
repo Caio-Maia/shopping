@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.controllers;
 
-import com.example.projectBancoDados.dto.fornecedor.FornecedorDTO;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorRequest;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorResponse;
 import com.example.projectBancoDados.services.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,20 +18,20 @@ public class FornecedorController {
     private FornecedorService service;
 
     @GetMapping
-    public ResponseEntity<List<FornecedorDTO>> findAll() {
-        List<FornecedorDTO> list = service.findAll();
+    public ResponseEntity<List<FornecedorResponse>> findAll() {
+        List<FornecedorResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<FornecedorDTO> findById(@PathVariable Long id) {
-        FornecedorDTO fornecedor = service.findById(id);
+    public ResponseEntity<FornecedorResponse> findById(@PathVariable Long id) {
+        FornecedorResponse fornecedor = service.findById(id);
         return ResponseEntity.ok().body(fornecedor);
     }
 
     @PostMapping
-    public ResponseEntity<FornecedorDTO> insert(@Valid @RequestBody FornecedorDTO dto) throws Exception {
-        FornecedorDTO fornecedor = service.insert(dto);
+    public ResponseEntity<FornecedorResponse> insert(@Valid @RequestBody FornecedorRequest dto) throws Exception {
+        FornecedorResponse fornecedor = service.insert(dto);
         return ResponseEntity.ok().body(fornecedor);
     }
 

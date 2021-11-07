@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.services;
 
-import com.example.projectBancoDados.dto.produto.ProdutoDTO;
+import com.example.projectBancoDados.dto.produto.ProdutoResponse;
+import com.example.projectBancoDados.dto.produto.ProdutoRequest;
 import com.example.projectBancoDados.entities.Produto;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.ProdutoRepository;
@@ -26,26 +27,26 @@ public class ProdutoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProdutoDTO> findAll() {
+    public Page<ProdutoResponse> findAll() {
         int page = 0;
         int size = 10;
         PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.ASC, "nome");
         List<Produto> list = repository.findAll();
-        return new PageImpl<>(list.stream().map(x -> new ProdutoDTO(x)).collect(Collectors.toList()), pageRequest, size);
+        return new PageImpl<>(list.stream().map(x -> new ProdutoResponse(x)).collect(Collectors.toList()), pageRequest, size);
     }
 
-    public ProdutoDTO findById(Long id) {
+    public ProdutoResponse findById(Long id) {
         Produto entity = repository.findById(id).orElseThrow(NotFoundException::new);
-        return new ProdutoDTO(entity);
+        return new ProdutoResponse(entity);
     }
 
     @Transactional
-    public ProdutoDTO insert(ProdutoDTO dto) {
+    public ProdutoResponse insert(ProdutoRequest dto) {
         Produto entity = new Produto();
         entity.setNome(dto.getNome());
         entity.setQuantidade(dto.getQuantidade());
         entity = repository.save(entity);
-        return new ProdutoDTO(entity);
+        return new ProdutoResponse(entity);
     }
 
     @Transactional

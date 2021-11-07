@@ -3,20 +3,20 @@ package com.example.projectBancoDados.dto.produto;
 import com.example.projectBancoDados.entities.Produto;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Positive;
 
-public class ProdutoExistBody implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ProdutoVendaBody {
 
     @NotNull(message = "ProdutoId is required")
     private Long id;
 
     @NotNull(message = "Quantidade is required.")
+    @Positive(message = "Quantidade must be greater than 0")
     private Integer quantidade;
 
-    public ProdutoExistBody() {}
+    public ProdutoVendaBody() {}
 
-    public ProdutoExistBody(Produto entity) {
+    public ProdutoVendaBody(Produto entity) {
         id = entity.getId();
         quantidade = entity.getQuantidade();
     }

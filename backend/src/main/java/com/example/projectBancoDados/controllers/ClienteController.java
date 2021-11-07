@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.controllers;
 
-import com.example.projectBancoDados.dto.cliente.ClienteDTO;
+import com.example.projectBancoDados.dto.cliente.ClienteRequest;
+import com.example.projectBancoDados.dto.cliente.ClienteResponse;
 import com.example.projectBancoDados.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,20 +19,20 @@ public class ClienteController {
     private ClienteService service;
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> findAll(Pageable pageable) {
-        Page<ClienteDTO> list = service.findAll();
+    public ResponseEntity<Page<ClienteResponse>> findAll(Pageable pageable) {
+        Page<ClienteResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id) {
-        ClienteDTO cliente = service.findById(id);
+    public ResponseEntity<ClienteResponse> findById(@PathVariable Long id) {
+        ClienteResponse cliente = service.findById(id);
         return ResponseEntity.ok().body(cliente);
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> insert(@Valid @RequestBody ClienteDTO dto) {
-        ClienteDTO cliente = service.insert(dto);
+    public ResponseEntity<ClienteResponse> insert(@Valid @RequestBody ClienteRequest dto) {
+        ClienteResponse cliente = service.insert(dto);
         return ResponseEntity.ok().body(cliente);
     }
 

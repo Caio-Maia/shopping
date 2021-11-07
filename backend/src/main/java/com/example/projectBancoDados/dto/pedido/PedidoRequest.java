@@ -4,10 +4,8 @@ import com.example.projectBancoDados.entities.Pedido;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 
-public class PedidoRequest implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PedidoRequest {
 
     @Positive(message = "Quantidade must be greater than 0")
     @NotNull(message = "Quantidade is required.")

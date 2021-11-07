@@ -5,35 +5,27 @@ import com.example.projectBancoDados.entities.ProdutoVenda;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Positive;
 
-public class ProdutoDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private Long id;
+public class ProdutoRequest {
 
     @NotBlank(message = "Nome is required.")
     private String nome;
 
+    @Positive(message = "Quantidade must be greater than 0")
     @NotNull(message = "Quantidade is required.")
     private Integer quantidade;
 
-    public ProdutoDTO() {}
+    public ProdutoRequest() {}
 
-    public ProdutoDTO(Produto entity) {
-        id = entity.getId();
+    public ProdutoRequest(Produto entity) {
         nome = entity.getNome();
         quantidade = entity.getQuantidade();
     }
 
-    public ProdutoDTO(ProdutoVenda entity) {
-        id = entity.getProduto().getId();
+    public ProdutoRequest(ProdutoVenda entity) {
         nome = entity.getProduto().getNome();
         quantidade = entity.getQuantidade();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getNome() {

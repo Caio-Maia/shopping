@@ -1,18 +1,16 @@
 package com.example.projectBancoDados.dto.venda;
 
-import com.example.projectBancoDados.dto.produto.ProdutoExistBody;
+import com.example.projectBancoDados.dto.produto.ProdutoVendaBody;
 import com.example.projectBancoDados.entities.Venda;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 
-public class VendaRequest implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class VendaRequest {
 
-    //@NotEmpty(message = "Produtos is required")
-    private List<ProdutoExistBody> produtos;
+    @NotEmpty(message = "Produtos is required")
+    private List<ProdutoVendaBody> produtos;
     @NotNull(message = "VendedorId is required.")
     private Long vendedorId;
     @NotNull(message = "ClienteId is required.")
@@ -32,7 +30,7 @@ public class VendaRequest implements Serializable {
         clienteId = entity.getCliente().getId();
     }
 
-    public List<ProdutoExistBody> getProdutos() {
+    public List<ProdutoVendaBody> getProdutos() {
         return produtos;
     }
 

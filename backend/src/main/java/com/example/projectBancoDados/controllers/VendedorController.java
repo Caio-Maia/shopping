@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.controllers;
 
-import com.example.projectBancoDados.dto.vendedor.VendedorDTO;
+import com.example.projectBancoDados.dto.vendedor.VendedorRequest;
+import com.example.projectBancoDados.dto.vendedor.VendedorResponse;
 import com.example.projectBancoDados.services.VendedorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,23 +24,23 @@ public class VendedorController {
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de vendedores.")
-    public ResponseEntity<Page<VendedorDTO>> findAll(Pageable pageable) {
-        Page<VendedorDTO> list = service.findAll();
+    public ResponseEntity<Page<VendedorResponse>> findAll(Pageable pageable) {
+        Page<VendedorResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     // buscar por matricula ao inves de id;
     @ApiOperation(value = "Retorna um vendedor especifico.")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<VendedorDTO> findById(@PathVariable Long id) {
-        VendedorDTO vendedor = service.findById(id);
+    public ResponseEntity<VendedorResponse> findById(@PathVariable Long id) {
+        VendedorResponse vendedor = service.findById(id);
         return ResponseEntity.ok().body(vendedor);
     }
 
     @ApiOperation(value = "Cria um novo vendedor.")
     @PostMapping
-    public ResponseEntity<VendedorDTO> insert(@Valid @RequestBody VendedorDTO dto) {
-        VendedorDTO vendedor = service.insert(dto);
+    public ResponseEntity<VendedorResponse> insert(@Valid @RequestBody VendedorRequest dto) {
+        VendedorResponse vendedor = service.insert(dto);
         return ResponseEntity.ok().body(vendedor);
     }
 

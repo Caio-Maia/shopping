@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.controllers;
 
-import com.example.projectBancoDados.dto.produto.ProdutoDTO;
+import com.example.projectBancoDados.dto.produto.ProdutoResponse;
+import com.example.projectBancoDados.dto.produto.ProdutoRequest;
 import com.example.projectBancoDados.services.ProdutoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,22 +24,22 @@ public class ProdutoController {
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de produtos.")
-    public ResponseEntity<Page<ProdutoDTO>> findAll(Pageable pageable) {
-        Page<ProdutoDTO> list = service.findAll();
+    public ResponseEntity<Page<ProdutoResponse>> findAll(Pageable pageable) {
+        Page<ProdutoResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @ApiOperation(value = "Retorna um produto especifico.")
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id) {
-        ProdutoDTO produto = service.findById(id);
+    public ResponseEntity<ProdutoResponse> findById(@PathVariable Long id) {
+        ProdutoResponse produto = service.findById(id);
         return ResponseEntity.ok().body(produto);
     }
 
     @ApiOperation(value = "Cria um novo produto.")
     @PostMapping
-    public ResponseEntity<ProdutoDTO> insert(@Valid @RequestBody ProdutoDTO dto) {
-        ProdutoDTO produto = service.insert(dto);
+    public ResponseEntity<ProdutoResponse> insert(@Valid @RequestBody ProdutoRequest dto) {
+        ProdutoResponse produto = service.insert(dto);
         return ResponseEntity.ok().body(produto);
     }
 

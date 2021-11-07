@@ -1,20 +1,18 @@
 package com.example.projectBancoDados.dto.pedido;
 
-import com.example.projectBancoDados.dto.produto.ProdutoDTO;
-import com.example.projectBancoDados.dto.fornecedor.FornecedorDTO;
+import com.example.projectBancoDados.dto.produto.ProdutoResponse;
+import com.example.projectBancoDados.dto.fornecedor.FornecedorResponse;
 import com.example.projectBancoDados.entities.Pedido;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class PedidoResponse implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PedidoResponse {
 
     private Long id;
     private Integer quantidade;
     private LocalDateTime tempo;
-    private ProdutoDTO produto;
-    private FornecedorDTO fornecedor;
+    private ProdutoResponse produto;
+    private FornecedorResponse fornecedor;
 
     public PedidoResponse() {
     }
@@ -23,8 +21,8 @@ public class PedidoResponse implements Serializable {
         id = entity.getId();
         quantidade = entity.getQuantidade();
         tempo = entity.getDataPedido();
-        produto = new ProdutoDTO(entity.getProduto());
-        fornecedor = new FornecedorDTO(entity.getFornecedor());
+        produto = new ProdutoResponse(entity.getProduto());
+        fornecedor = new FornecedorResponse(entity.getFornecedor());
     }
 
     public Long getId() {
@@ -39,11 +37,11 @@ public class PedidoResponse implements Serializable {
         return tempo;
     }
 
-    public ProdutoDTO getProduto() {
+    public ProdutoResponse getProduto() {
         return produto;
     }
 
-    public FornecedorDTO getFornecedor() {
+    public FornecedorResponse getFornecedor() {
         return fornecedor;
     }
 }
