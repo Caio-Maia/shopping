@@ -2,10 +2,7 @@ package com.example.projectBancoDados.services;
 
 import com.example.projectBancoDados.dto.venda.VendaRequest;
 import com.example.projectBancoDados.dto.venda.VendaResponse;
-import com.example.projectBancoDados.entities.Cliente;
-import com.example.projectBancoDados.entities.Produto;
-import com.example.projectBancoDados.entities.Venda;
-import com.example.projectBancoDados.entities.Vendedor;
+import com.example.projectBancoDados.entities.*;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.ClienteRepository;
 import com.example.projectBancoDados.repositories.ProdutoRepository;
@@ -57,14 +54,14 @@ public class VendaService {
     public VendaResponse insert(VendaRequest dto) {
         if(clienteRepository.existsById(dto.getClienteId()) && vendedorRepository.existsById(dto.getVendedorId())) {
             Venda entity = new Venda();
-            List<Produto> entityProdutos = new ArrayList<>();
+            List<ProdutoVenda> entityProdutos = new ArrayList<>();
             dto.getProdutos().forEach(produto -> {
                 if(!produtoRepository.existsById(produto.getId())) throw new NotFoundException();
                 Produto newProduto = produtoRepository.getById(produto.getId());
-                entityProdutos.add(newProduto);
                 int novaQuantidade = newProduto.getQuantidade() - produto.getQuantidade();
                 // Mudar o exception
                 if(novaQuantidade < 0) throw new NotFoundException();
+                entityProdutos.add(new ProdutoVenda(newProduto, produto.getQuantidade(), entity));
                 newProduto.setQuantidade(novaQuantidade);
                 produtoRepository.save(newProduto);
             });

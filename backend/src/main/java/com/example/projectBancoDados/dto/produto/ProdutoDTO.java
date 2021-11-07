@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.dto.produto;
 
 import com.example.projectBancoDados.entities.Produto;
+import com.example.projectBancoDados.entities.ProdutoVenda;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,12 @@ public class ProdutoDTO implements Serializable {
     public ProdutoDTO(Produto entity) {
         id = entity.getId();
         nome = entity.getNome();
+        quantidade = entity.getQuantidade();
+    }
+
+    public ProdutoDTO(ProdutoVenda entity) {
+        id = entity.getProduto().getId();
+        nome = entity.getProduto().getNome();
         quantidade = entity.getQuantidade();
     }
 

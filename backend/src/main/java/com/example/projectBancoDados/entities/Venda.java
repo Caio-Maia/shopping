@@ -14,16 +14,15 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany
-    @JoinColumn(name = "produto_id")
-    private List<Produto> produtos;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "venda")
+    private List<ProdutoVenda> produtos;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "clienteId", referencedColumnName = "id")
     private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(name = "vendedor_id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "vendedorId", referencedColumnName = "id")
     private Vendedor vendedor;
 
     private Integer valor;
@@ -32,7 +31,7 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(long id, List<Produto> produtos, Cliente cliente, Vendedor vendedor, Integer valor, LocalDateTime dataVenda) {
+    public Venda(long id, List<ProdutoVenda> produtos, Cliente cliente, Vendedor vendedor, Integer valor, LocalDateTime dataVenda) {
         this.id = id;
         this.produtos = produtos;
         this.cliente = cliente;
@@ -49,11 +48,11 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
-    public List<Produto> getProdutos() {
+    public List<ProdutoVenda> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(List<ProdutoVenda> produtos) {
         this.produtos = produtos;
     }
 
