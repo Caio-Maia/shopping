@@ -6,6 +6,7 @@ import com.example.projectBancoDados.entities.ProdutoVenda;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 public class ProdutoRequest {
@@ -17,7 +18,7 @@ public class ProdutoRequest {
     @NotNull(message = "Preco is required.")
     private BigDecimal preco;
 
-    @Positive(message = "Quantidade must be greater than 0")
+    @PositiveOrZero(message = "Quantidade must be greater or equals to 0")
     @NotNull(message = "Quantidade is required.")
     private Integer quantidade;
 

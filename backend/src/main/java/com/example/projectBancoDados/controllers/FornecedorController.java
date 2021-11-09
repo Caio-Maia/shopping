@@ -4,6 +4,7 @@ import com.example.projectBancoDados.dto.fornecedor.FornecedorRequest;
 import com.example.projectBancoDados.dto.fornecedor.FornecedorResponse;
 import com.example.projectBancoDados.services.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class FornecedorController {
     @PostMapping
     public ResponseEntity<FornecedorResponse> insert(@Valid @RequestBody FornecedorRequest dto) throws Exception {
         FornecedorResponse fornecedor = service.insert(dto);
-        return ResponseEntity.ok().body(fornecedor);
+        return new ResponseEntity<>(fornecedor, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/{id}")

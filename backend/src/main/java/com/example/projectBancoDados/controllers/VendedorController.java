@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +42,7 @@ public class VendedorController {
     @PostMapping
     public ResponseEntity<VendedorResponse> insert(@Valid @RequestBody VendedorRequest dto) {
         VendedorResponse vendedor = service.insert(dto);
-        return ResponseEntity.ok().body(vendedor);
+        return new ResponseEntity<>(vendedor, HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Exclui um vendedor.")

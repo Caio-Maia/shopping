@@ -6,6 +6,7 @@ import com.example.projectBancoDados.services.OperadoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class OperadoraController {
     @PostMapping
     public ResponseEntity<OperadoraResponse> insert(@Valid @RequestBody OperadoraRequest dto) {
         OperadoraResponse operadora = service.insert(dto);
-        return ResponseEntity.ok().body(operadora);
+        return new ResponseEntity<>(operadora, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/{id}")

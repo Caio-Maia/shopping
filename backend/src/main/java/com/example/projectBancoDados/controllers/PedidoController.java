@@ -6,6 +6,7 @@ import com.example.projectBancoDados.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,6 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<PedidoResponse> insert(@Valid @RequestBody PedidoRequest dto) {
         PedidoResponse pedido = service.insert(dto);
-        return ResponseEntity.ok().body(pedido);
+        return new ResponseEntity<>(pedido, HttpStatus.CREATED);
     }
 }

@@ -8,10 +8,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/produtos")
@@ -40,7 +42,7 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<ProdutoResponse> insert(@Valid @RequestBody ProdutoRequest dto) {
         ProdutoResponse produto = service.insert(dto);
-        return ResponseEntity.ok().body(produto);
+        return new ResponseEntity<>(produto, HttpStatus.CREATED);
     }
 
     // Não pode excluir o produto sem excluir os pedidos relacionados a ele.

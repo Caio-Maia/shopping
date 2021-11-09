@@ -6,6 +6,7 @@ import com.example.projectBancoDados.services.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,6 @@ public class VendaController {
     @PostMapping
     public ResponseEntity<VendaResponse> insert(@Valid @RequestBody VendaRequest dto) {
         VendaResponse venda = service.insert(dto);
-        return ResponseEntity.ok().body(venda);
+        return new ResponseEntity<>(venda, HttpStatus.CREATED);
     }
 }
