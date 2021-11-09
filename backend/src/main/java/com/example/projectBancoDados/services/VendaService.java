@@ -1,5 +1,6 @@
 package com.example.projectBancoDados.services;
 
+import com.example.projectBancoDados.dto.produto.ProdutoVendaBody;
 import com.example.projectBancoDados.dto.venda.VendaRequest;
 import com.example.projectBancoDados.dto.venda.VendaResponse;
 import com.example.projectBancoDados.entities.*;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +58,8 @@ public class VendaService {
         if(clienteRepository.existsById(dto.getClienteId()) && vendedorRepository.existsById(dto.getVendedorId())) {
             Venda entity = new Venda();
             List<ProdutoVenda> entityProdutos = new ArrayList<>();
-            dto.getProdutos().forEach(produto -> {
+            BigDecimal precoTotal = new BigDecimal(0);
+            for(ProdutoVendaBody produto : dto.getProdutos()) {
                 if(!produtoRepository.existsById(produto.getId())) throw new NotFoundException();
                 Produto produtoVendido = produtoRepository.getById(produto.getId());
                 int novaQuantidade = produtoVendido.getQuantidade() - produto.getQuantidade();
@@ -64,13 +68,14 @@ public class VendaService {
                 entityProdutos.add(new ProdutoVenda(produtoVendido, produto.getQuantidade(), entity));
                 produtoVendido.setQuantidade(novaQuantidade);
                 produtoRepository.save(produtoVendido);
-            });
+                precoTotal = precoTotal.add(produtoVendido.getPreco()).multiply(new BigDecimal(produto.getQuantidade()));
+            }
             entity.setProdutos(entityProdutos);
             Cliente cliente = clienteRepository.getById(dto.getClienteId());
             entity.setCliente(cliente);
             Vendedor vendedor = vendedorRepository.getById(dto.getVendedorId());
             entity.setVendedor(vendedor);
-            entity.setValor(10000);
+            entity.setValor(precoTotal.setScale(2, RoundingMode.HALF_EVEN));
             entity.setDataVenda(LocalDateTime.now());
             vendaRepository.save(entity);
             return new VendaResponse(entity);

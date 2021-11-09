@@ -2,6 +2,7 @@ package com.example.projectBancoDados.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Venda implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "venda")
     private List<ProdutoVenda> produtos;
@@ -25,13 +26,13 @@ public class Venda implements Serializable {
     @JoinColumn(name = "vendedorId", referencedColumnName = "id")
     private Vendedor vendedor;
 
-    private Integer valor;
+    private BigDecimal valor;
     private LocalDateTime dataVenda;
 
     public Venda() {
     }
 
-    public Venda(long id, List<ProdutoVenda> produtos, Cliente cliente, Vendedor vendedor, Integer valor, LocalDateTime dataVenda) {
+    public Venda(Long id, List<ProdutoVenda> produtos, Cliente cliente, Vendedor vendedor, BigDecimal valor, LocalDateTime dataVenda) {
         this.id = id;
         this.produtos = produtos;
         this.cliente = cliente;
@@ -40,11 +41,11 @@ public class Venda implements Serializable {
         this.dataVenda = dataVenda;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,11 +73,11 @@ public class Venda implements Serializable {
         this.vendedor = vendedor;
     }
 
-    public Integer getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

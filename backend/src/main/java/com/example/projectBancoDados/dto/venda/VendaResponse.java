@@ -5,17 +5,18 @@ import com.example.projectBancoDados.dto.produto.ProdutoResponse;
 import com.example.projectBancoDados.dto.vendedor.VendedorResponse;
 import com.example.projectBancoDados.entities.Venda;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VendaResponse {
 
-    private long id;
+    private Long id;
     private ClienteResponse cliente;
     private VendedorResponse vendedor;
     private List<ProdutoResponse> produtos;
-    private Integer valor;
+    private BigDecimal valor;
     private LocalDateTime dataVenda;
 
     public VendaResponse() {
@@ -47,7 +48,7 @@ public class VendaResponse {
         return produtos;
     }
 
-    public Integer getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 

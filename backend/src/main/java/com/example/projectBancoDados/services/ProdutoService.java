@@ -44,6 +44,7 @@ public class ProdutoService {
     public ProdutoResponse insert(ProdutoRequest dto) {
         Produto entity = new Produto();
         entity.setNome(dto.getNome());
+        entity.setPreco(dto.getPreco());
         entity.setQuantidade(dto.getQuantidade());
         entity = repository.save(entity);
         return new ProdutoResponse(entity);

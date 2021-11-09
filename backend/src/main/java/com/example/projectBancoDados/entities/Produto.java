@@ -2,6 +2,7 @@ package com.example.projectBancoDados.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "t_produto")
@@ -10,24 +11,28 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
+
+    @Column(name = "preco", nullable = false)
+    private BigDecimal preco;
 
     @Column(name = "quantidade")
     private Integer quantidade;
 
     public Produto(){}
 
-    public Produto(long id, String nome, Integer quantidade) {
+    public Produto(Long id, String nome, BigDecimal preco, Integer quantidade) {
         super();
         this.id = id;
         this.nome = nome;
+        this.preco = preco;
         this.quantidade = quantidade;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -37,6 +42,14 @@ public class Produto implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
     public Integer getQuantidade() {

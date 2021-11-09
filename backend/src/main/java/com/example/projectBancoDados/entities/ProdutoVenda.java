@@ -10,7 +10,7 @@ public class ProdutoVenda implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "produtoId", referencedColumnName = "id")
@@ -35,7 +35,7 @@ public class ProdutoVenda implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
