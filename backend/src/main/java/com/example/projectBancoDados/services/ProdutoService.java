@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,6 +49,18 @@ public class ProdutoService {
         entity.setQuantidade(dto.getQuantidade());
         entity = repository.save(entity);
         return new ProdutoResponse(entity);
+    }
+
+    @Transactional
+    public ProdutoResponse update(Long id, ProdutoRequest dto) {
+        Optional<Produto> produto = repository.findById(id);
+        if(produto.isPresent()) {
+            Produto entity = produto.get();
+            entity.setNome(dto.getNome());
+            entity.setQuantidade(dto.getQuantidade());
+            entity.setPreco(dto.getPreco());
+            return new ProdutoResponse(entity);
+        } else throw new NotFoundException();
     }
 
     @Transactional

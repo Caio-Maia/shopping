@@ -45,6 +45,13 @@ public class ProdutoController {
         return new ResponseEntity<>(produto, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Atualiza informações de um produto.")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ProdutoResponse> update(@PathVariable Long id, @Valid @RequestBody ProdutoRequest dto) {
+        ProdutoResponse produto = service.update(id, dto);
+        return ResponseEntity.ok().body(produto);
+    }
+
     // Não pode excluir o produto sem excluir os pedidos relacionados a ele.
     @ApiOperation(value = "Exclui um produto.")
     @DeleteMapping(value = "/{id}")
