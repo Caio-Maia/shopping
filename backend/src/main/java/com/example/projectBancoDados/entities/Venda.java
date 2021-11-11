@@ -19,11 +19,11 @@ public class Venda implements Serializable {
     private List<ProdutoVenda> produtos;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "clienteId", referencedColumnName = "id")
+    @JoinColumn(name = "clienteId", referencedColumnName = "id", nullable = false)
     private Cliente cliente;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "vendedorId", referencedColumnName = "id")
+    @JoinColumn(name = "vendedorId", referencedColumnName = "id", nullable = false)
     private Vendedor vendedor;
 
     private BigDecimal valor;

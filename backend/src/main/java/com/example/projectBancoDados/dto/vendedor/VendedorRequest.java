@@ -11,7 +11,7 @@ public class VendedorRequest {
     @NotBlank(message = "Nome is required.")
     private String nome;
     @NotNull(message = "Matricula is required.")
-    private long matricula;
+    private Long matricula;
     private Cargo cargo;
 
     public VendedorRequest() {}
@@ -26,7 +26,7 @@ public class VendedorRequest {
         return nome;
     }
 
-    public long getMatricula() {
+    public Long getMatricula() {
         return matricula;
     }
 

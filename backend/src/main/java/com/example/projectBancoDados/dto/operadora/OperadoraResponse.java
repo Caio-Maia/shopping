@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class OperadoraResponse {
 
-    private long id;
+    private Long id;
     private String nome;
     private String bandeira;
 
@@ -19,11 +19,11 @@ public class OperadoraResponse {
         this.bandeira = entity.getBandeira();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

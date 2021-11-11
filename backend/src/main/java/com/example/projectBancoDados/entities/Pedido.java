@@ -11,26 +11,26 @@ public class Pedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "tempo")
+    @Column(name = "tempo", nullable = false)
     private LocalDateTime dataPedido;
 
     @ManyToOne
-    @JoinColumn(name = "produto_id")
+    @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = false)
     private Produto produto;
 
     @ManyToOne
-    @JoinColumn(name = "fornecedor_id")
+    @JoinColumn(name = "fornecedor_id", referencedColumnName = "id", nullable = false)
     private Fornecedor fornecedor;
 
     public Pedido() {
     }
 
-    public Pedido(long id, Integer quantidade, LocalDateTime tempo, Produto produto, Fornecedor fornecedor) {
+    public Pedido(Long id, Integer quantidade, LocalDateTime tempo, Produto produto, Fornecedor fornecedor) {
         super();
         this.id = id;
         this.quantidade = quantidade;
@@ -39,8 +39,12 @@ public class Pedido implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getQuantidade() {

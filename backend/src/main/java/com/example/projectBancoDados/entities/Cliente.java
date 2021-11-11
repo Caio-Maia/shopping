@@ -12,18 +12,27 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(nullable = false)
     private Tipo tipo;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Long documento;
+
+    @Column(nullable = false)
     private String endereco;
+
+    @Column(nullable = false)
     private Long telefone;
 
     public Cliente() {
     }
 
-    public Cliente(long id, Tipo tipo, String nome, Long documento, String endereco, Long telefone) {
+    public Cliente(Long id, Tipo tipo, String nome, Long documento, String endereco, Long telefone) {
         this.id = id;
         this.tipo = tipo;
         this.nome = nome;
@@ -32,11 +41,11 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

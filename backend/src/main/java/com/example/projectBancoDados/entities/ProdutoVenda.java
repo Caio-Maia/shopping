@@ -13,11 +13,11 @@ public class ProdutoVenda implements Serializable {
     private Long id;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "produtoId", referencedColumnName = "id")
+    @JoinColumn(name = "produtoId", referencedColumnName = "id", nullable = false)
     private Produto produto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendaId")
+    @JoinColumn(name = "vendaId", referencedColumnName = "id", nullable = false)
     private Venda venda;
 
     private Integer quantidade;
@@ -31,7 +31,7 @@ public class ProdutoVenda implements Serializable {
         this.venda = venda;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

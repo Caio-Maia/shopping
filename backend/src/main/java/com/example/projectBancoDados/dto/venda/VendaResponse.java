@@ -32,7 +32,7 @@ public class VendaResponse {
         dataVenda = entity.getDataVenda();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

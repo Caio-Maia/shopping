@@ -14,15 +14,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,18 +54,28 @@ public class VendaService {
         return new PageImpl<>(list.stream().map(x -> new VendaResponse(x)).collect(Collectors.toList()), pageRequest, size);
     }
 
+    public VendaResponse findById(Long id) {
+        Venda entity = vendaRepository.findById(id).orElseThrow(NotFoundException::new);
+        return new VendaResponse(entity);
+    }
+
     @Transactional
     public VendaResponse insert(VendaRequest dto) {
         if(clienteRepository.existsById(dto.getClienteId()) && vendedorRepository.existsById(dto.getVendedorId())) {
             Venda entity = new Venda();
             List<ProdutoVenda> entityProdutos = new ArrayList<>();
             BigDecimal precoTotal = new BigDecimal(0);
+
             for(ProdutoVendaBody produto : dto.getProdutos()) {
+
                 if(!produtoRepository.existsById(produto.getId())) throw new NotFoundException();
+
                 Produto produtoVendido = produtoRepository.getById(produto.getId());
                 int novaQuantidade = produtoVendido.getQuantidade() - produto.getQuantidade();
-                // Mudar o exception
-                if(novaQuantidade < 0) throw new NotFoundException();
+
+                if(novaQuantidade < 0) throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST, "Quantidade para compra deve ser maior que 0");
+
                 entityProdutos.add(new ProdutoVenda(produtoVendido, produto.getQuantidade(), entity));
                 produtoVendido.setQuantidade(novaQuantidade);
                 produtoRepository.save(produtoVendido);

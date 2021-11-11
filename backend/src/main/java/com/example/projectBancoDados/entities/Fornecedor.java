@@ -10,23 +10,23 @@ public class Fornecedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private Long cnpj;
 
-    @Column
+    @Column(nullable = false)
     private String endereco;
 
-    @Column
+    @Column(nullable = false)
     private Long telefone;
 
     public Fornecedor() {}
 
-    public Fornecedor(long id, String nome, Long cnpj, String endereco, Long telefone) {
+    public Fornecedor(Long id, String nome, Long cnpj, String endereco, Long telefone) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -34,7 +34,7 @@ public class Fornecedor implements Serializable {
         this.telefone = telefone;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

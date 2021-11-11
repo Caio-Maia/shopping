@@ -24,6 +24,12 @@ public class VendaController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<VendaResponse> findById(@PathVariable Long id) {
+        VendaResponse venda = service.findById(id);
+        return ResponseEntity.ok().body(venda);
+    }
+
     @PostMapping
     public ResponseEntity<VendaResponse> insert(@Valid @RequestBody VendaRequest dto) {
         VendaResponse venda = service.insert(dto);

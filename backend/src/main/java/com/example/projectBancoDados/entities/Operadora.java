@@ -10,26 +10,29 @@ public class Operadora implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     // Talvez seja melhor usar ENUMS?
     private String bandeira;
 
     public Operadora() {
     }
 
-    public Operadora(long id, String nome, String bandeira) {
+    public Operadora(Long id, String nome, String bandeira) {
         this.id = id;
         this.nome = nome;
         this.bandeira = bandeira;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -5,9 +5,9 @@ import com.example.projectBancoDados.entities.enums.Cargo;
 
 public class VendedorResponse {
 
-    private long id;
+    private Long id;
     private String nome;
-    private long matricula;
+    private Long matricula;
     private Cargo cargo;
 
     public VendedorResponse() {}
@@ -19,7 +19,7 @@ public class VendedorResponse {
         cargo = entity.getCargo();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -27,7 +27,7 @@ public class VendedorResponse {
         return nome;
     }
 
-    public long getMatricula() {
+    public Long getMatricula() {
         return matricula;
     }
 

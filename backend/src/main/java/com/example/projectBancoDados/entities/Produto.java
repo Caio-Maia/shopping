@@ -19,7 +19,7 @@ public class Produto implements Serializable {
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;
 
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
     public Produto(){}

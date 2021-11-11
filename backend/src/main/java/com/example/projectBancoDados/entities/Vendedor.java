@@ -12,16 +12,21 @@ public class Vendedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(nullable = false)
     private String nome;
-    private long matricula;
+
+    @Column(nullable = false)
+    private Long matricula;
+
+    @Column(nullable = false)
     private Cargo cargo;
 
     public Vendedor() {
     }
 
-    public Vendedor(long id, String nome, long matricula, Cargo cargo) {
+    public Vendedor(Long id, String nome, Long matricula, Cargo cargo) {
         super();
         this.id = id;
         this.nome = nome;
@@ -29,11 +34,11 @@ public class Vendedor implements Serializable {
         this.cargo = cargo;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,11 +50,11 @@ public class Vendedor implements Serializable {
         this.nome = nome;
     }
 
-    public long getMatricula() {
+    public Long getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(long matricula) {
+    public void setMatricula(Long matricula) {
         this.matricula = matricula;
     }
 
