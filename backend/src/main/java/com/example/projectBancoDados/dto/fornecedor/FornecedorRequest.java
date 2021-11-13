@@ -4,16 +4,17 @@ import com.example.projectBancoDados.entities.Fornecedor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class FornecedorRequest {
 
     @NotBlank(message = "Nome is required.")
     private String nome;
-    @NotEmpty(message = "CNPJ is required")
+    @NotNull(message = "CNPJ is required")
     private Long cnpj;
     @NotBlank(message = "Endereço is required")
     private String endereco;
-    @NotEmpty(message = "Telefone is required")
+    @NotNull(message = "Telefone is required")
     private Long telefone;
 
     public FornecedorRequest() {}

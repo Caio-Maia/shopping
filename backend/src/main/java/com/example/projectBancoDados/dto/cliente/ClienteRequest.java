@@ -5,17 +5,19 @@ import com.example.projectBancoDados.entities.enums.Tipo;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class ClienteRequest {
 
     private Tipo tipo;
-    @NotBlank
+    @NotBlank(message = "Nome is required.")
+    @Pattern(regexp = "^([a-z][a-z\\s]*[a-z])$", message = "O nome não pode conter números ou catacteres especiais.")
     private String nome;
-    @NotNull
+    @NotNull(message = "Documento is required.")
     private Long documento;
-    @NotBlank
+    @NotBlank(message = "Endereco is required.")
     private String endereco;
-    @NotNull
+    @NotNull(message = "Telefone is required.")
     private Long telefone;
 
     public ClienteRequest() {

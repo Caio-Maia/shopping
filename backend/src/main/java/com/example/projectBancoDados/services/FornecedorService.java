@@ -6,11 +6,17 @@ import com.example.projectBancoDados.entities.Fornecedor;
 import com.example.projectBancoDados.exceptions.NotFoundException;
 import com.example.projectBancoDados.repositories.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static com.example.projectBancoDados.utils.ValidaDocumentos.isCNPJ;
+import static com.example.projectBancoDados.utils.ValidaDocumentos.isCPF;
 
 @Service
 public class FornecedorService {
@@ -35,13 +41,20 @@ public class FornecedorService {
 
     @Transactional
     public FornecedorResponse insert(FornecedorRequest dto) {
-        Fornecedor entity = new Fornecedor();
-        entity.setNome(dto.getNome());
-        entity.setCnpj(dto.getCnpj());
-        entity.setEndereco(dto.getEndereco());
-        entity.setTelefone(dto.getTelefone());
-        entity = repository.save(entity);
-        return new FornecedorResponse(entity);
+        if(repository.existsByCnpj(dto.getCnpj()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Um fornecedor já está cadastrado com esse documento.");
+        Pattern regex = Pattern.compile("(\\(\\d{2}\\))?9?\\d{8}");
+        if(isCNPJ(dto.getCnpj())) {
+            if(regex.matcher(dto.getTelefone().toString()).matches()) {
+                Fornecedor entity = new Fornecedor();
+                entity.setNome(dto.getNome());
+                entity.setCnpj(dto.getCnpj());
+                entity.setEndereco(dto.getEndereco());
+                entity.setTelefone(dto.getTelefone());
+                entity = repository.save(entity);
+                return new FornecedorResponse(entity);
+            } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O telefone do fornecedor não é valido.");
+        } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O CNPJ do fornecedor não é válido.");
     }
 
     @Transactional

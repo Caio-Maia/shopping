@@ -6,9 +6,9 @@ import javax.validation.constraints.NotBlank;
 
 public class OperadoraRequest {
 
-    @NotBlank
+    @NotBlank(message = "Nome is required.")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "Bandeira is required.")
     private String bandeira;
 
     public OperadoraRequest() {
