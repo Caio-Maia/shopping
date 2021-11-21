@@ -7,12 +7,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/produtos")
@@ -25,8 +27,8 @@ public class ProdutoController {
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de produtos.")
-    public ResponseEntity<Page<ProdutoResponse>> findAll(Pageable pageable) {
-        Page<ProdutoResponse> list = service.findAll();
+    public ResponseEntity<Page<ProdutoResponse>> findAll(PageRequest page) {
+        Page<ProdutoResponse> list = service.findAll(page);
         return ResponseEntity.ok().body(list);
     }
 

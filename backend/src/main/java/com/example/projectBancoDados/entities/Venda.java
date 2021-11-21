@@ -26,17 +26,25 @@ public class Venda implements Serializable {
     @JoinColumn(name = "vendedorId", referencedColumnName = "id", nullable = false)
     private Vendedor vendedor;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "operadoraId", referencedColumnName = "id")
+    private Operadora operadora;
+
+    @Column(nullable = false)
+    private Integer parcelas;
     private BigDecimal valor;
     private LocalDateTime dataVenda;
 
     public Venda() {
     }
 
-    public Venda(Long id, List<ProdutoVenda> produtos, Cliente cliente, Vendedor vendedor, BigDecimal valor, LocalDateTime dataVenda) {
+    public Venda(Long id, List<ProdutoVenda> produtos, Cliente cliente, Vendedor vendedor, Operadora operadora, Integer parcelas, BigDecimal valor, LocalDateTime dataVenda) {
         this.id = id;
         this.produtos = produtos;
         this.cliente = cliente;
         this.vendedor = vendedor;
+        this.operadora = operadora;
+        this.parcelas = parcelas;
         this.valor = valor;
         this.dataVenda = dataVenda;
     }
@@ -71,6 +79,22 @@ public class Venda implements Serializable {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+    }
+
+    public Operadora getOperadora() {
+        return operadora;
+    }
+
+    public void setOperadora(Operadora operadora) {
+        this.operadora = operadora;
+    }
+
+    public Integer getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(Integer parcelas) {
+        this.parcelas = parcelas;
     }
 
     public BigDecimal getValor() {

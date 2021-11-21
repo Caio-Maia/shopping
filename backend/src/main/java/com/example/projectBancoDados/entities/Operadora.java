@@ -15,17 +15,12 @@ public class Operadora implements Serializable {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    // Talvez seja melhor usar ENUMS?
-    private String bandeira;
-
     public Operadora() {
     }
 
-    public Operadora(Long id, String nome, String bandeira) {
+    public Operadora(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.bandeira = bandeira;
     }
 
     public Long getId() {
@@ -44,11 +39,4 @@ public class Operadora implements Serializable {
         this.nome = nome;
     }
 
-    public String getBandeira() {
-        return bandeira;
-    }
-
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
-    }
 }

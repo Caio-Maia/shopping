@@ -1,6 +1,7 @@
 package com.example.projectBancoDados.dto.venda;
 
 import com.example.projectBancoDados.dto.cliente.ClienteResponse;
+import com.example.projectBancoDados.dto.operadora.OperadoraResponse;
 import com.example.projectBancoDados.dto.produto.ProdutoResponse;
 import com.example.projectBancoDados.dto.vendedor.VendedorResponse;
 import com.example.projectBancoDados.entities.Venda;
@@ -16,6 +17,8 @@ public class VendaResponse {
     private ClienteResponse cliente;
     private VendedorResponse vendedor;
     private List<ProdutoResponse> produtos;
+    private OperadoraResponse operadora;
+    private Integer parcelas;
     private BigDecimal valor;
     private LocalDateTime dataVenda;
 
@@ -28,6 +31,8 @@ public class VendaResponse {
         vendedor = new VendedorResponse(entity.getVendedor());
         produtos = new ArrayList<>();
         entity.getProdutos().forEach(produto -> produtos.add(new ProdutoResponse(produto)));
+        operadora = new OperadoraResponse(entity.getOperadora());
+        parcelas = entity.getParcelas();
         valor = entity.getValor();
         dataVenda = entity.getDataVenda();
     }
@@ -46,6 +51,14 @@ public class VendaResponse {
 
     public List<ProdutoResponse> getProdutos() {
         return produtos;
+    }
+
+    public OperadoraResponse getOperadora() {
+        return operadora;
+    }
+
+    public Integer getParcelas() {
+        return parcelas;
     }
 
     public BigDecimal getValor() {

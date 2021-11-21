@@ -19,19 +19,19 @@ public class Vendedor implements Serializable {
 
     @Column(nullable = false)
     private Long matricula;
-
+/* Retirado de acordo com reunião 15/11
     @Column(nullable = false)
     private Cargo cargo;
-
+*/
     public Vendedor() {
     }
 
-    public Vendedor(Long id, String nome, Long matricula, Cargo cargo) {
+    public Vendedor(Long id, String nome, Long matricula/*, Cargo cargo*/) {
         super();
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
-        this.cargo = cargo;
+        //this.cargo = cargo;
     }
 
     public Long getId() {
@@ -57,12 +57,12 @@ public class Vendedor implements Serializable {
     public void setMatricula(Long matricula) {
         this.matricula = matricula;
     }
-
+/*
     public Cargo getCargo() {
         return cargo;
     }
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
-    }
+    }*/
 }

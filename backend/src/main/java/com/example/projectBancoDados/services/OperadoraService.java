@@ -43,7 +43,6 @@ public class OperadoraService {
     public OperadoraResponse insert(OperadoraRequest dto) {
         Operadora entity = new Operadora();
         entity.setNome(dto.getNome());
-        entity.setBandeira(dto.getBandeira());
         entity = repository.save(entity);
         return new OperadoraResponse(entity);
     }

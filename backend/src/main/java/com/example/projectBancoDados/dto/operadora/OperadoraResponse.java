@@ -8,7 +8,6 @@ public class OperadoraResponse {
 
     private Long id;
     private String nome;
-    private String bandeira;
 
     public OperadoraResponse() {
     }
@@ -16,7 +15,6 @@ public class OperadoraResponse {
     public OperadoraResponse(Operadora entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
-        this.bandeira = entity.getBandeira();
     }
 
     public Long getId() {
@@ -35,11 +33,4 @@ public class OperadoraResponse {
         this.nome = nome;
     }
 
-    public String getBandeira() {
-        return bandeira;
-    }
-
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
-    }
 }

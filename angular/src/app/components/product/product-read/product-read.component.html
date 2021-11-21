@@ -1,5 +1,7 @@
-<ul>
-    <li *ngFor="let p of products">
-        {{p.nome}}
-    </li>
-</ul>
+<gridjs-angular
+    [config]="gridConfig"
+    (cellClick)="handleCellClick($event)"
+    (rowClick)="handleRowClick($event)"
+    (beforeLoad)="handleBeforeLoad($event)"
+    (gridLoad)="handleGridLoad($event)"
+></gridjs-angular>

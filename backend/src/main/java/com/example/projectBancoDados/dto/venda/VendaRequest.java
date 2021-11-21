@@ -11,10 +11,12 @@ public class VendaRequest {
 
     @NotEmpty(message = "Produtos is required")
     private List<ProdutoVendaBody> produtos;
-    @NotNull(message = "VendedorId is required.")
     private Long vendedorId;
     @NotNull(message = "ClienteId is required.")
     private Long clienteId;
+    private Long operadoraId;
+    @NotNull(message = "Parcelas is required.")
+    private Integer parcelas;
 
     public VendaRequest() {
     }
@@ -28,6 +30,8 @@ public class VendaRequest {
         });
         vendedorId = entity.getVendedor().getId();
         clienteId = entity.getCliente().getId();
+        operadoraId = entity.getOperadora().getId();
+        parcelas = entity.getParcelas();
     }
 
     public List<ProdutoVendaBody> getProdutos() {
@@ -40,5 +44,13 @@ public class VendaRequest {
 
     public Long getClienteId() {
         return clienteId;
+    }
+
+    public Long getOperadoraId() {
+        return operadoraId;
+    }
+
+    public Integer getParcelas() {
+        return parcelas;
     }
 }

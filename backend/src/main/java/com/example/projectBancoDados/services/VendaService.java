@@ -5,10 +5,7 @@ import com.example.projectBancoDados.dto.venda.VendaRequest;
 import com.example.projectBancoDados.dto.venda.VendaResponse;
 import com.example.projectBancoDados.entities.*;
 import com.example.projectBancoDados.exceptions.NotFoundException;
-import com.example.projectBancoDados.repositories.ClienteRepository;
-import com.example.projectBancoDados.repositories.ProdutoRepository;
-import com.example.projectBancoDados.repositories.VendaRepository;
-import com.example.projectBancoDados.repositories.VendedorRepository;
+import com.example.projectBancoDados.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,16 +30,19 @@ public class VendaService {
     private final ClienteRepository clienteRepository;
     private final VendedorRepository vendedorRepository;
     private final ProdutoRepository produtoRepository;
+    private final OperadoraRepository operadoraRepository;
 
     @Autowired
     public VendaService(VendaRepository vendaRepository,
                         ClienteRepository clienteRepository,
                         VendedorRepository vendedorRepository,
-                        ProdutoRepository produtoRepository) {
+                        ProdutoRepository produtoRepository,
+                        OperadoraRepository operadoraRepository) {
         this.vendaRepository = vendaRepository;
         this.clienteRepository = clienteRepository;
         this.vendedorRepository = vendedorRepository;
         this.produtoRepository = produtoRepository;
+        this.operadoraRepository = operadoraRepository;
     }
 
     @Transactional(readOnly = true)
@@ -66,6 +66,9 @@ public class VendaService {
             List<ProdutoVenda> entityProdutos = new ArrayList<>();
             BigDecimal precoTotal = new BigDecimal(0);
 
+            if(dto.getParcelas() > 0 && dto.getOperadoraId() == null) throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Deve existir uma operadora para parcelar vendas.");
+
             for(ProdutoVendaBody produto : dto.getProdutos()) {
 
                 if(!produtoRepository.existsById(produto.getId())) throw new NotFoundException();
@@ -75,7 +78,6 @@ public class VendaService {
 
                 if(novaQuantidade < 0) throw new ResponseStatusException(
                         HttpStatus.BAD_REQUEST, "Quantidade para compra deve ser maior que 0");
-
                 entityProdutos.add(new ProdutoVenda(produtoVendido, produto.getQuantidade(), entity));
                 produtoVendido.setQuantidade(novaQuantidade);
                 produtoRepository.save(produtoVendido);
@@ -86,6 +88,13 @@ public class VendaService {
             entity.setCliente(cliente);
             Vendedor vendedor = vendedorRepository.getById(dto.getVendedorId());
             entity.setVendedor(vendedor);
+            if(dto.getOperadoraId() != null) {
+                if (operadoraRepository.existsById(dto.getOperadoraId())) {
+                    Operadora operadora = operadoraRepository.getById(dto.getOperadoraId());
+                    entity.setOperadora(operadora);
+                }
+            }
+            entity.setParcelas(dto.getParcelas());
             entity.setValor(precoTotal.setScale(2, RoundingMode.HALF_EVEN));
             entity.setDataVenda(LocalDateTime.now());
             vendaRepository.save(entity);

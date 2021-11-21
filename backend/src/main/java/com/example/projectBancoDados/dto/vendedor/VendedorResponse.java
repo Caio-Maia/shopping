@@ -16,7 +16,7 @@ public class VendedorResponse {
         id = entity.getId();
         nome = entity.getNome();
         matricula = entity.getMatricula();
-        cargo = entity.getCargo();
+        //cargo = entity.getCargo();
     }
 
     public Long getId() {
@@ -31,7 +31,7 @@ public class VendedorResponse {
         return matricula;
     }
 
-    public Cargo getCargo() {
+    /*public Cargo getCargo() {
         return cargo;
-    }
+    }*/
 }

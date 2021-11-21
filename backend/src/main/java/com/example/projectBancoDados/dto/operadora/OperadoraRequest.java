@@ -8,15 +8,12 @@ public class OperadoraRequest {
 
     @NotBlank(message = "Nome is required.")
     private String nome;
-    @NotBlank(message = "Bandeira is required.")
-    private String bandeira;
 
     public OperadoraRequest() {
     }
 
     public OperadoraRequest(Operadora entity) {
         this.nome = entity.getNome();
-        this.bandeira = entity.getBandeira();
     }
 
     public String getNome() {
@@ -27,11 +24,4 @@ public class OperadoraRequest {
         this.nome = nome;
     }
 
-    public String getBandeira() {
-        return bandeira;
-    }
-
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
-    }
 }

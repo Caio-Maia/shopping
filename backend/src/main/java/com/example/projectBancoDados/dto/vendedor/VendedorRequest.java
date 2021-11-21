@@ -21,7 +21,7 @@ public class VendedorRequest {
     public VendedorRequest(Vendedor entity) {
         nome = entity.getNome();
         matricula = entity.getMatricula();
-        cargo = entity.getCargo();
+        //cargo = entity.getCargo();
     }
 
     public String getNome() {

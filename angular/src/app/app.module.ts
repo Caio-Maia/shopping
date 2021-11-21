@@ -38,6 +38,7 @@ import { SaleCrudComponent } from './views/sale-crud/sale-crud.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InterceptorService } from './components/template/loader/interceptor.service';
+import { GridJsAngularModule } from 'gridjs-angular';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -78,7 +79,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxMatSelectSearchModule,
     NgxMaskModule.forRoot(),
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    GridJsAngularModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

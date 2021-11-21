@@ -45,7 +45,7 @@ public class VendedorService {
         Vendedor entity = new Vendedor();
         entity.setNome(dto.getNome());
         entity.setMatricula(dto.getMatricula());
-        entity.setCargo(dto.getCargo());
+        //entity.setCargo(dto.getCargo());
         entity = repository.save(entity);
         return new VendedorResponse(entity);
     }
