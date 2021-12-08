@@ -1,25 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { h, UserConfig } from "gridjs";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-read',
   templateUrl: './product-read.component.html',
   styleUrls: ['./product-read.component.css']
 })
-export class ProductReadComponent implements OnInit {
+export class ProductReadComponent implements OnInit, OnDestroy {
 
-  products: Product[];
+  private products: Product[];
+  private ngUnsubscribe: Subscription;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.read().subscribe(products => {
+    this.ngUnsubscribe = this.productService.read().subscribe(products => {
       this.products = products;
     }, (error)=> {
       this.productService.showMenssage('Não Foi Possivel encontrar nenhum produto.');
     })
+  }
+
+  ngOnDestroy():void {
+    this.ngUnsubscribe.unsubscribe();
   }
 
   public gridConfig: UserConfig = {
@@ -29,14 +35,30 @@ export class ProductReadComponent implements OnInit {
       {name:"Preço", formatter: (cell) => `R$ ${cell}`}, 
       {name:"Quantidade"},
       { 
-        name: 'Actions',
-        formatter: (cell, row) => {
-          return h('button', {
-            class: 'mat-raised-button',
-            onClick: () => this.productService.delete(row.cells[0].data)
-          }, 'Excluir');
-        }
-      },
+        name: 'Ações',
+        columns: [
+        {
+          name: 'Deletar',
+          sort: false,
+          formatter: (cell, row) => {
+            return h('button', {
+              class: 'material-icons',
+              onClick: () => this.productService.delete(row.cells[0].data)
+            }, 'delete_outline');
+          },
+        },
+        {
+          name: 'Editar',
+          sort: false,
+          formatter: (cell, row) => {
+            return h('button', {
+              class: 'material-icons',
+              onClick: () => alert("ainda será feito")
+            }, 'edit');
+          }
+        },
+      ]
+      }
     ],
     sort: true,
     search: true,

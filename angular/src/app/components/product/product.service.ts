@@ -38,7 +38,8 @@ export class ProductService {
         window.location.reload();
       },
       error: error => {
-        console.error('Não foi possivel deletar!', error);
+        this.showMenssage('Não foi possivel deletar!');
+        console.error(error);
       }
     });
   }
