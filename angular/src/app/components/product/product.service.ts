@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { ComponentChild } from 'preact';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
 
@@ -28,5 +29,17 @@ export class ProductService {
 
   read(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl);
+  }
+
+  delete(productId: ComponentChild) {
+    alert('Deletando produto de id: '+productId.toString());
+    return this.http.delete(this.baseUrl+`/${productId}`).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: error => {
+        console.error('Não foi possivel deletar!', error);
+      }
+    });
   }
 }

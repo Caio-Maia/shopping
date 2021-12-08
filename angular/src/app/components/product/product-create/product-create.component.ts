@@ -16,16 +16,8 @@ export class ProductCreateComponent implements OnInit {
   product:Product = {
     nome: undefined,
     preco: undefined,
-    quantidade: undefined,
-    descricao: undefined,
-    fornecedor: undefined
+    quantidade: undefined
   }
-
-  providers:Provider[] = [
-    {id: 1, nome:"Vagabundo INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
-    {id: 2, nome:"MACMAC INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"},
-    {id: 3, nome:"DADA INC", cnpj:"123712", endereco:"rua dos doidos", telefone:"89346232"}
-  ]
 
   myControl = new FormControl();
   filteredOptions: Observable<Provider[]>;
@@ -36,10 +28,6 @@ export class ProductCreateComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
     this.produtoForm = new FormGroup({
       nome: new FormControl(this.product.nome, [
         Validators.required
@@ -51,18 +39,8 @@ export class ProductCreateComponent implements OnInit {
       quantidade: new FormControl(this.product.quantidade, [
         Validators.pattern("^[0-9]*$"),
         Validators.required
-      ]),
-      descricao: new FormControl(this.product.descricao, []),
-      fornecedor: new FormControl(this.product.fornecedor, [
-        Validators.required
       ])
     })
-  }
-
-  private _filter(value: string): Provider[] {
-    const filterValue = value.toLowerCase();
-
-    return this.providers.filter(option => option.nome.toLowerCase().includes(filterValue));
   }
 
   createProduct(): void {
