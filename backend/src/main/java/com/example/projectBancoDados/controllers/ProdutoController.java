@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,8 +28,8 @@ public class ProdutoController {
 
     @GetMapping
     @ApiOperation(value = "Retorna uma lista de produtos.")
-    public ResponseEntity<Page<ProdutoResponse>> findAll(PageRequest page) {
-        Page<ProdutoResponse> list = service.findAll(page);
+    public ResponseEntity<List<ProdutoResponse>> findAll() {
+        List<ProdutoResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 

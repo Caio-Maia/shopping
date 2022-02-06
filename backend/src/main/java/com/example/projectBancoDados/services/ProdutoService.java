@@ -25,9 +25,9 @@ public class ProdutoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProdutoResponse> findAll(PageRequest pageRequest) {
-        Page<Produto> list = repository.findAll(pageRequest);
-        return new PageImpl<>(list.stream().map(x -> new ProdutoResponse(x)).collect(Collectors.toList()), pageRequest, list.getTotalElements());
+    public List<ProdutoResponse> findAll() {
+        List<Produto> list = repository.findAll();
+        return list.stream().map(x -> new ProdutoResponse(x)).collect(Collectors.toList());
     }
 
     public ProdutoResponse findById(Long id) {

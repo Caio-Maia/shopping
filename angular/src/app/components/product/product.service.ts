@@ -15,12 +15,13 @@ export class ProductService {
   constructor(private snackBar: MatSnackBar,
     private http: HttpClient) { }
 
-  showMenssage(msg: string) {
-    this.snackBar.open(msg, '', {
-      duration: 3000,
-      horizontalPosition: "right",
-      verticalPosition: "top"
-    })
+  showMenssage(msg: string, duration = 4000, actionText = 'Fechar') {
+    return this.snackBar.open(msg, actionText, {
+      duration: duration,
+      // Cast the variable to MatSnackBarHorizontalPosition
+      horizontalPosition: 'end',
+      verticalPosition: 'top'
+    });
   }
 
   create(product: Product): Observable<Product> {

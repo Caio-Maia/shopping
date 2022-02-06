@@ -39,6 +39,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InterceptorService } from './components/template/loader/interceptor.service';
 import { GridJsAngularModule } from 'gridjs-angular';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -60,6 +61,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,

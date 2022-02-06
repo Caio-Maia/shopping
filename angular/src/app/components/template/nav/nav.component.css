@@ -1,6 +1,7 @@
 .sidenav {
     background-color: #3F51B5;
     width: 200px;
+    z-index: 100;
 }
 
 .sidenav a {
@@ -14,4 +15,24 @@
 .content {
     padding: 16px;
     background-color: #FFF;
+}
+
+.logo-image {
+    width: 70px;
+    height: inherit;
+    position: relative;
+    margin-top: 20px;
+}
+
+.logo-name {
+    text-decoration: none;
+    height: 30px;
+}
+
+.nav-list {
+    margin-top: 3%;
+}
+
+.active {
+    background-color: #303d88 !important;
 }

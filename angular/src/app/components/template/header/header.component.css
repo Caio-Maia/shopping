@@ -1,41 +1,13 @@
-.header {
-    display: flexbox;
-    justify-content: flex-start;
-    align-items: center;
-    position: sticky;
-    position: -webkit-sticky; /* For macOS/iOS Safari */
-    top: 0; /* Sets the sticky toolbar to be on top */
-    z-index: 10; /* Ensure that your app's content doesn't overlap the toolbar */
+.find-me {
+    margin-right: 1%;
 }
 
-.logo {
-    width: 50px;
-    height: inherit;
+.github {
+    margin-right: 10%;
 }
 
-.header a {
-    display: flex;
-    align-items: center;
+a {
     text-decoration: none;
-}
-
-.header .title-group {
-    padding-left: 25px;
-}
-
-.header .title-group i {
-    padding-right: 5px;
-}
-
-.app-toolbar {
-    position: sticky;
-    position: -webkit-sticky; /* For macOS/iOS Safari */
-    top: 0; /* Sets the sticky toolbar to be on top */
-    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
-}
-
-.loader-container {
-    position: fixed;
-    width: 100%;
-    z-index: 99;
+    margin: 5px;
+    color:inherit;
 }

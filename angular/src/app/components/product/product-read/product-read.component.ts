@@ -31,11 +31,12 @@ export class ProductReadComponent implements OnInit, OnDestroy {
   public gridConfig: UserConfig = {
     columns: [
       {name:"Id", hidden: true }, 
-      {name:"Nome"}, 
-      {name:"Preço", formatter: (cell) => `R$ ${cell}`}, 
-      {name:"Quantidade"},
+      {name:"Nome", width: '50%'}, 
+      {name:"Preço", formatter: (cell) => `R$ ${cell}`, width: '25%'}, 
+      {name:"Quantidade", width: '30%'},
       { 
         name: 'Ações',
+        width: '30%',
         columns: [
         {
           name: 'Deletar',

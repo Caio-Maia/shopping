@@ -1,17 +1,29 @@
-<mat-toolbar class="header mat-elevation-z4">
-    <span>
-        <a>
-            <img class="logo" src="../../../../assets/logo.png" alt="logo" width="200" height="110">
-        </a>
-    </span>
-    <span class="title-group">
-        <a>
-            Mercado do Jorges
-        </a>
-    </span>
-    
-</mat-toolbar>
+<div fxLayout="column">
+    <mat-toolbar class="header mat-elevation-z4" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayoutAlign="space-evenly center">
+            <a>
+                <img class="logo" src="../../../../assets/logo.png" alt="logo" width="50">
+            </a>
+            <span class="title-group" fxLayoutAlign="space-around center">
+                <a routerLink="/">
+                    Menu
+                </a>
+                <i class="material-icons icon" *ngIf='location()'>arrow_right</i>
+                <!--<span class="pointer" *ngIf='location()'>></span> -->
+                <a>{{location()}}</a>
+            </span>
+        </div>
+        <div class="find-me">
+            <a href="https://github.com/Caio-Maia">
+                <img class="github" src="../../../../assets/github.png" alt="github" width="36px">
+            </a>
+            <a href="https://www.linkedin.com/in/caiojordan/">
+                <img class="linkedin" src="../../../../assets/linkedin.png" alt="linkedin" width="36px">
+            </a>
+        </div>
+    </mat-toolbar>
 
-<div *ngIf="loaderService.isLoading | async" class="loader-container">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="loaderService.isLoading | async" class="loader-container mat-elevation-z4">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
 </div>
