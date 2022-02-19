@@ -1,0 +1,55 @@
+<mat-card>
+    <mat-card-title>Novo Cliente</mat-card-title>
+    <form [formGroup]="clientForm">
+        <mat-form-field>
+            <mat-label>Nome do Cliente</mat-label>
+            <input matInput formControlName="nome" placeholder="Nome do Cliente" [(ngModel)]="client.nome" name="Cliente">
+            <mat-icon class="invalid" *ngIf="clientForm.get('nome').touched && this.clientForm.get('nome').errors != null" matSuffix>warning</mat-icon>
+            <mat-error *ngIf="clientForm.get('nome').touched && clientForm.get('nome').errors?.required"> Insira o nome do Cliente</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Tipo do cliente</mat-label>
+            <mat-select formControlName="tipo" [(value)]="client.tipo">
+                <mat-option value="PESSOA_FISICA">Pessoa Física</mat-option>
+                <mat-option value="PESSOA_JURIDICA">Pessoa Jurídica</mat-option>
+                {{typeForm()}}
+            </mat-select>
+            <mat-error *ngIf="clientForm.get('tipo').touched && clientForm.get('tipo').errors?.required"> Selecione o tipo do Cliente</mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="compareType(allTipos.PESSOA_FISICA)">
+            <mat-label>CPF</mat-label>
+            <input matInput mask="000.000.000-00" formControlName="cpf" placeholder="CPF" [(ngModel)]="client.documento">
+            <mat-error *ngIf="clientForm.get('cpf').touched && clientForm.get('cpf').errors?.required"> Insira o CPF do Cliente</mat-error>
+            <mat-error *ngIf="clientForm.get('cpf').touched && clientForm.get('cpf').errors?.pattern"> Insira um CPF válido</mat-error>
+            <mat-icon class="invalid" *ngIf="clientForm.get('cpf').touched && this.clientForm.get('cpf').errors != null" matSuffix>warning</mat-icon>
+        </mat-form-field>
+        <mat-form-field *ngIf="compareType(allTipos.PESSOA_JURIDICA)">
+            <mat-label>CNPJ</mat-label>
+            <input matInput mask="00.000.000/0000-00" formControlName="cnpj" placeholder="CNPJ" [(ngModel)]="client.documento">
+            <mat-error *ngIf="clientForm.get('cnpj').touched && clientForm.get('cnpj').errors?.required"> Insira o CNPJ do Cliente</mat-error>
+            <mat-error *ngIf="clientForm.get('cnpj').touched && clientForm.get('cnpj').errors?.pattern"> Insira um CNPJ válido</mat-error>
+            <mat-icon class="invalid" *ngIf="clientForm.get('cnpj').touched && this.clientForm.get('cnpj').errors != null" matSuffix>warning</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Telefone</mat-label>
+            <input matInput mask="(00) 00000-0000" formControlName="telefone" placeholder="Telefone" [(ngModel)]="client.telefone">
+            <mat-icon class="invalid" *ngIf="clientForm.get('telefone').touched && this.clientForm.get('telefone').errors != null" matSuffix>warning</mat-icon>
+            <mat-error *ngIf="clientForm.get('telefone').touched && clientForm.get('telefone').errors?.required"> Insira o telefone do Cliente</mat-error>
+            <mat-error *ngIf="clientForm.get('telefone').touched && clientForm.get('telefone').errors?.pattern"> Insira um numero de celular válido</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Endereço</mat-label>
+            <input matInput formControlName="endereco" placeholder="Endereço" [(ngModel)]="client.endereco">
+            <mat-icon class="invalid" *ngIf="clientForm.get('endereco').touched && this.clientForm.get('endereco').errors != null" matSuffix>warning</mat-icon>
+            <mat-error *ngIf="clientForm.get('endereco').touched && clientForm.get('endereco').errors?.required"> Insira o endereço do Cliente</mat-error>
+        </mat-form-field>
+    </form>
+</mat-card>
+
+<button mat-raised-button (click)="createClient()" color="primary">
+    Salvar
+</button>
+
+<button mat-raised-button (click)="cancel()">
+    Cancelar
+</button>

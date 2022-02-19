@@ -6,6 +6,7 @@ import { ProductCreateComponent } from './components/product/product-create/prod
 import { UsersCrudComponent } from './views/users-crud/users-crud.component';
 import { SaleCreateComponent } from './components/sale/sale-create/sale-create.component';
 import { SaleCrudComponent } from './views/sale-crud/sale-crud.component';
+import { ClientCreateComponent } from './components/users/client/client-create/client-create.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: "users",
     component: UsersCrudComponent
+  },
+  {
+    path: "users/client/create",
+    component: ClientCreateComponent
   }
 ];
 

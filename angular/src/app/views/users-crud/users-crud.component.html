@@ -1,7 +1,11 @@
 <div class="menu">
-    <button mat-raised-button color=primary>
+    <button mat-raised-button color=primary (click)="navigateToClientCreate()">
         <span class="material-icons">person_add</span>
         Novo Cliente
+    </button>
+    <button mat-raised-button color=primary (click)="abrirCadastroCliente()">
+        <span class="material-icons">person_add</span>
+        Abrir dialog
     </button>
 
     <button mat-raised-button color=primary>
