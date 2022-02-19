@@ -17,7 +17,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatFormFieldDefaultOptions, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { HomeComponent } from './views/home/home.component';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
@@ -31,6 +31,7 @@ import { ProductReadComponent } from './components/product/product-read/product-
 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UsersCrudComponent } from './views/users-crud/users-crud.component';
 import { SaleCreateComponent } from './components/sale/sale-create/sale-create.component';
 import { SaleReadComponent } from './components/sale/sale-read/sale-read.component';
@@ -40,8 +41,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InterceptorService } from './components/template/loader/interceptor.service';
 import { GridJsAngularModule } from 'gridjs-angular';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ClientCreateComponent } from './components/users/client/client-create/client-create.component';
+import { ClientReadComponent } from './components/users/client/client-read/client-read.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
+const appearance: MatFormFieldDefaultOptions = {
+  appearance: 'outline'
+};
 
 @NgModule({
   declarations: [
@@ -56,7 +63,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     UsersCrudComponent,
     SaleCreateComponent,
     SaleReadComponent,
-    SaleCrudComponent
+    SaleCrudComponent,
+    ClientCreateComponent,
+    ClientReadComponent
   ],
   imports: [
     BrowserModule,
@@ -82,10 +91,12 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    GridJsAngularModule
+    GridJsAngularModule,
+    MatDialogModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: appearance}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    margin: 20px;
+}
+
+mat-card {
+    margin-top: 15px;
+}
+
+mat-form-field {
+    margin-top: 20px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+.invalid{
+    color:#f44336;
+}
+
+
+mat-label {
+    font-size: 0.9vw
+}
