@@ -51,7 +51,7 @@ public class ClienteService {
 
     @Transactional
     public ClienteResponse insert(ClienteRequest dto) {
-        Pattern regex = Pattern.compile("(\\(\\d{2}\\))?9\\d{8}");
+        Pattern regex = Pattern.compile("(\\d{2})?9\\d{8}");
         if(dto.getTipo().equals(Tipo.PESSOA_FISICA)) {
             if(!isCPF(dto.getDocumento())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O CPF do cliente não é válido.");
         }
