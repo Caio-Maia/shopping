@@ -43,7 +43,7 @@ public class FornecedorService {
     public FornecedorResponse insert(FornecedorRequest dto) {
         if(repository.existsByCnpj(dto.getCnpj()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Um fornecedor já está cadastrado com esse documento.");
-        Pattern regex = Pattern.compile("(\\(\\d{2}\\))?9?\\d{8}");
+        Pattern regex = Pattern.compile("(\\d{2})?9\\d{8}");
         if(isCNPJ(dto.getCnpj())) {
             if(regex.matcher(dto.getTelefone().toString()).matches()) {
                 Fornecedor entity = new Fornecedor();
