@@ -10,8 +10,8 @@ public class FornecedorRequest {
 
     @NotBlank(message = "Nome is required.")
     private String nome;
-    @NotNull(message = "CNPJ is required")
-    private Long cnpj;
+    @NotBlank(message = "CNPJ is required")
+    private String cnpj;
     @NotBlank(message = "Endereço is required")
     private String endereco;
     @NotNull(message = "Telefone is required")
@@ -30,7 +30,7 @@ public class FornecedorRequest {
         return nome;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 

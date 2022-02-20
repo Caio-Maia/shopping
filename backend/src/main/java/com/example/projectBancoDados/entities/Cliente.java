@@ -20,8 +20,8 @@ public class Cliente implements Serializable {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private Long documento;
+    @Column(nullable = false, columnDefinition = "varchar")
+    private String documento;
 
     @Column(nullable = false)
     private String endereco;
@@ -32,7 +32,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long id, Tipo tipo, String nome, Long documento, String endereco, Long telefone) {
+    public Cliente(Long id, Tipo tipo, String nome, String documento, String endereco, Long telefone) {
         this.id = id;
         this.tipo = tipo;
         this.nome = nome;
@@ -65,11 +65,11 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 

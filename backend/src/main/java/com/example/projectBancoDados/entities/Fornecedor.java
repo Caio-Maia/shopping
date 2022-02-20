@@ -15,8 +15,8 @@ public class Fornecedor implements Serializable {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private Long cnpj;
+    @Column(nullable = false, columnDefinition = "varchar")
+    private String cnpj;
 
     @Column(nullable = false)
     private String endereco;
@@ -26,7 +26,7 @@ public class Fornecedor implements Serializable {
 
     public Fornecedor() {}
 
-    public Fornecedor(Long id, String nome, Long cnpj, String endereco, Long telefone) {
+    public Fornecedor(Long id, String nome, String cnpj, String endereco, Long telefone) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -46,11 +46,11 @@ public class Fornecedor implements Serializable {
         this.nome = nome;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(Long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

@@ -6,7 +6,7 @@ public class FornecedorResponse {
 
     private Long id;
     private String nome;
-    private Long cnpj;
+    private String cnpj;
     private String endereco;
     private Long telefone;
 
@@ -28,7 +28,7 @@ public class FornecedorResponse {
         return nome;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 

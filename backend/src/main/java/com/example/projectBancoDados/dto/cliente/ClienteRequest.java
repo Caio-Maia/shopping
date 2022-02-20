@@ -13,8 +13,8 @@ public class ClienteRequest {
     @NotBlank(message = "Nome is required.")
     @Pattern(regexp = "^([a-z][a-z\\s]*[a-z])$", message = "O nome não pode conter números ou catacteres especiais.")
     private String nome;
-    @NotNull(message = "Documento is required.")
-    private Long documento;
+    @NotBlank(message = "Documento is required.")
+    private String documento;
     @NotBlank(message = "Endereco is required.")
     private String endereco;
     @NotNull(message = "Telefone is required.")
@@ -47,11 +47,11 @@ public class ClienteRequest {
         this.nome = nome;
     }
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 

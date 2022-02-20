@@ -8,7 +8,7 @@ public class ClienteResponse {
     private Long id;
     private Tipo tipo;
     private String nome;
-    private Long documento;
+    private String documento;
     private String endereco;
     private Long telefone;
 
@@ -48,11 +48,11 @@ public class ClienteResponse {
         this.nome = nome;
     }
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 
